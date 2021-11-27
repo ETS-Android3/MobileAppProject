@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bg" format="color"/>
+    <attr name="primaryTextColor" format="color"/>
+    <attr name="secondaryTextColor" format="color" />
+    <attr name="titlePrimaryColor" format="color" />
+    <attr name="titleSecondaryColor" format="color" />
+    <attr name="primaryTextColor.70alpha" format="color" />
+    <attr name="primaryTextColor.90alpha" format="color" />
+    <attr name="hintTextColor" format="color" />
+    <attr name="colorControlNormal" format="color" />
+    <attr name="btnColor" format="color" />
+    <attr name="btnSecondaryColor" format="color" />
+    <attr name="greyTextColor" format="color"/>
+    <attr name="darkGreenTextColor" format="color"/>
+    <attr name="updateProfile" format="color"/>
+    <attr name="greenTextColor" format="color"/>
+    <attr name="greyIcon" format="color"/>
+    <attr name="greenIcon" format="color"/>
+    <attr name="darkGreyTextColor" format="color"/>
+    <attr name="blackTextColor" format="color"/>
+    <attr name="loginBG" format="color"/>
+</resources>

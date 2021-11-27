@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "318515963356",
+    "firebase_url": "https://ducatusfirebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ducatusfirebase",
+    "storage_bucket": "ducatusfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318515963356:android:ea15c0be9f03038e7b1b19",
+        "android_client_info": {
+          "package_name": "com.cabel.ducatusapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318515963356-vr5ibek4shscqqrtk2v2godfj6g51i33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFl-LdpT2xRTJXy-Tnisl_TUtj5iGO8Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318515963356-vr5ibek4shscqqrtk2v2godfj6g51i33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

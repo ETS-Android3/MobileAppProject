@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tobebudgeted"
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:layout_marginTop="25dp"
+    tools:context=".BudgetItem">
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:text="To Be Budgeted"
+        android:textColor="#F9F3F3"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="571dp"
+        android:background="@drawable/bg_border_white"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/btnBackBudgeted"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="70dp"
+            android:fontFamily="@font/roboto"
+            android:text="Item to be Budgeted"
+            android:textAlignment="center"
+            android:textColor="?attr/darkGreyTextColor"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="70dp"
+            android:fontFamily="@font/roboto"
+            android:text="Category"
+            android:textColor="?attr/titleSecondaryColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/bg_textbox"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#F9F3F3"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="70dp"
+            android:fontFamily="@font/roboto"
+            android:text="You can only perform subtraction to Activity column. The amount specified under the Activity will be deducted from the Budgeted."
+            android:textAlignment="center"
+            android:textColor="?attr/titleSecondaryColor"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="70dp">
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Budgeted"
+                android:textColor="?attr/titleSecondaryColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_toEndOf="@+id/textView35"
+                android:fontFamily="@font/roboto"
+                android:text="Activity"
+                android:textColor="?attr/titleSecondaryColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="78dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="31dp"
+                android:layout_toEndOf="@+id/textView36"
+                android:fontFamily="@font/roboto"
+                android:text="Available"
+                android:textColor="?attr/titleSecondaryColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName4"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_below="@+id/textView35"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_textbox"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="#F9F3F3"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName5"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_below="@+id/textView36"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/editTextTextPersonName4"
+                android:background="@drawable/bg_textbox"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="#F9F3F3"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName6"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_below="@+id/textView37"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/editTextTextPersonName5"
+                android:background="@drawable/bg_textbox_white"
+                android:elevation="9dp"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColor="#5E5B5B"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="70dp">
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="120dp"
+                android:layout_height="38dp"
+                android:background="@drawable/border_change_password"
+                android:fontFamily="@font/roboto"
+                android:text="SAVE"
+                android:textColor="#F9F3F3"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="120dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="32dp"
+                android:layout_toEndOf="@+id/button11"
+                android:background="@drawable/border_logout"
+                android:fontFamily="@font/roboto"
+                android:text="DELETE"
+                android:textColor="#F9F3F3"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

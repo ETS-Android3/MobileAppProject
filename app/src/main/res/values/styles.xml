@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="bg">#F9F3F3</item>
+        <item name="primaryTextColor">#E6254441</item>
+        <item name="secondaryTextColor">#B3254441</item>
+        <item name="titlePrimaryColor">#033F63</item>
+        <item name="titleSecondaryColor">#4C6663</item>
+        <item name="primaryTextColor.70alpha">#B3254441</item>
+        <item name="primaryTextColor.90alpha">#E6254441</item>
+        <item name="hintTextColor">#A5A2A2</item>
+        <item name="colorControlNormal">#726F6F</item>
+        <item name="btnColor">#7C9885</item>
+        <item name="btnSecondaryColor">#033F63</item>
+        <item name="greyTextColor">#8F9B9A</item>
+        <item name="darkGreenTextColor">#254441</item>
+        <item name="updateProfile">#657976</item>
+        <item name="greenTextColor">#4C6663</item>
+        <item name="greyIcon">#696666</item>
+        <item name="greenIcon">#7C9885</item>
+        <item name="darkGreyTextColor">#5E5B5B</item>
+        <item name="blackTextColor">#000000</item>
+        <item name="loginBG">#28666E</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="bg">#303232</item>
+        <item name="primaryTextColor">#E6A4DEBE</item>`
+        <item name="secondaryTextColor">#B3A4DEBE</item>
+        <item name="titlePrimaryColor">#DFDFC0</item>
+        <item name="titleSecondaryColor">#A4DEBE</item>
+        <item name="primaryTextColor.70alpha">#B3F9F3F3</item>
+        <item name="primaryTextColor.90alpha">#E6F9F3F3</item>
+        <item name="hintTextColor">#A5A2A2</item>
+        <item name="colorControlNormal">#F9F3F3</item>
+        <item name="greyTextColor">#F9F3F3</item>
+        <item name="darkGreenTextColor">#D7D7D7</item>
+        <item name="updateProfile">#FFFFFF</item>
+        <item name="greenTextColor">#F9F3F3</item>
+        <item name="greyIcon">#696666</item>
+        <item name="greenIcon">#A4DEBE</item>
+        <item name="darkGreyTextColor">#F9F3F3</item>
+        <item name="blackTextColor">#F9F3F3</item>
+        <item name="loginBG">#253044</item>
+    </style>
+
+    <style name="SettingsLight" parent="AppThemeLight">
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="SettingsDark" parent="AppThemeDark">
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+</resources>
