@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +32,17 @@ public class LogIn extends AppCompatActivity {
     private Boolean userKey = false;
     private Boolean passwordKey = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
         if(sharedPrefs.loadDarkModeTheme()) {
             setTheme(R.style.AppThemeDark);
+
         }
         else {
             setTheme(R.style.SettingsLight);
+
         }
 
         if(!SharedPrefs.getCurrentUser(LogIn.this).equals("")) {
@@ -49,6 +57,7 @@ public class LogIn extends AppCompatActivity {
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         TextView tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
         TextView tvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
