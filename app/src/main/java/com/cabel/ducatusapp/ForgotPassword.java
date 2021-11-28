@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ForgotPassword extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
-    private User user;
     private Boolean emailKey = false;
 
     @Override
@@ -36,11 +35,11 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        EditText etvEmail = (EditText) findViewById(R.id.etvEmail);
-        EditText etvNewPassword = (EditText) findViewById(R.id.etvNewPassReset);
-        EditText etvConfirmPassword = (EditText) findViewById(R.id.etvConfirmNewPassReset);
-        Button btnReset = (Button) findViewById(R.id.btnResetPass);
-        Button btnCancel = (Button) findViewById(R.id.btnCancel);
+        EditText etvEmail = findViewById(R.id.etvEmail);
+        EditText etvNewPassword = findViewById(R.id.etvNewPassReset);
+        EditText etvConfirmPassword = findViewById(R.id.etvConfirmNewPassReset);
+        Button btnReset = findViewById(R.id.btnResetPass);
+        Button btnCancel = findViewById(R.id.btnCancel);
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override

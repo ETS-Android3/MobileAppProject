@@ -21,4 +21,6 @@
     <attr name="blackTextColor" format="color"/>
     <attr name="loginBG" format="color"/>
     <attr name="loginImgBG" format="reference"/>
+    <attr name="textboxColor" format="reference"/>
+    <attr name="warningTextColor" format="color"/>
 </resources>

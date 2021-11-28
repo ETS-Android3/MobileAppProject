@@ -33,11 +33,11 @@ public class ChangePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        EditText etvCurrentPass = (EditText) findViewById(R.id.etvCurrentPass);
-        EditText etvNewPass = (EditText) findViewById(R.id.etvNewPass);
-        EditText etvConfNewPass = (EditText) findViewById(R.id.etvConfNewPass);
-        Button btnChangePassword = (Button) findViewById(R.id.btnChangePassword);
-        Button btnCancel = (Button) findViewById(R.id.btnCancel);
+        EditText etvCurrentPass = findViewById(R.id.etvCurrentPass);
+        EditText etvNewPass = findViewById(R.id.etvNewPass);
+        EditText etvConfNewPass = findViewById(R.id.etvConfNewPass);
+        Button btnChangePassword = findViewById(R.id.btnChangePassword);
+        Button btnCancel = findViewById(R.id.btnCancel);
 
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override

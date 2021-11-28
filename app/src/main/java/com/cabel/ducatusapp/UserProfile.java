@@ -24,11 +24,11 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        EditText etvUsernameProfile = (EditText) findViewById(R.id.etvUsernameProfile);
-        EditText etvEmailProfile = (EditText) findViewById(R.id.etvEmailProfile);
+        EditText etvUsernameProfile = findViewById(R.id.etvUsernameProfile);
+        EditText etvEmailProfile = findViewById(R.id.etvEmailProfile);
 
         //back button intent of User Profile -> home screen
-        Button btnBackUserProfile = (Button) findViewById(R.id.btnBackUserProfile);
+        Button btnBackUserProfile = findViewById(R.id.btnBackUserProfile);
         btnBackUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

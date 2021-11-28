@@ -23,7 +23,7 @@ public class SignUp extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private FirebaseDatabase database;
     private DatabaseReference ref;
-    private Integer userID = 1;
+    private Integer userID = 0;
     private Boolean validKey = false;
 
     @Override
@@ -39,11 +39,11 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        EditText etvUsername = (EditText) findViewById(R.id.etvUserReg);
-        EditText etvEmail = (EditText) findViewById(R.id.etvEmailReg);
-        EditText etvPassword = (EditText) findViewById(R.id.etvPassReg);
-        Button btnRegister = (Button) findViewById(R.id.btnRegister);
-        TextView tvLogin = (TextView) findViewById(R.id.tvLogin);
+        EditText etvUsername = findViewById(R.id.etvUserReg);
+        EditText etvEmail = findViewById(R.id.etvEmailReg);
+        EditText etvPassword = findViewById(R.id.etvPassReg);
+        Button btnRegister = findViewById(R.id.btnRegister);
+        TextView tvLogin = findViewById(R.id.tvLogin);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class SignUp extends AppCompatActivity {
                                 }
                             }
                             else {
-                                Toast.makeText(getApplicationContext(), "does not exist", Toast.LENGTH_SHORT).show();
+                                userID = 0;
                             }
                         }
                     }

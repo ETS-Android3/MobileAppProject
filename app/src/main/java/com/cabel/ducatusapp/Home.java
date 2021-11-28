@@ -26,7 +26,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Menu / Profile Settings (intent)
-        Button btnSettings = (Button) findViewById(R.id.btnSettings);
+        Button btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,11 +34,11 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        TextView tvUser = (TextView) findViewById(R.id.tvUser);
+        TextView tvUser = findViewById(R.id.tvUser);
         tvUser.setText(SharedPrefs.getCurrentUser(Home.this));
 
         //To be Budgeted (intent)
-        RelativeLayout RLBudgeted = (RelativeLayout) findViewById(R.id.RLBudgeted);
+        RelativeLayout RLBudgeted = findViewById(R.id.RLBudgeted);
         RLBudgeted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity {
         });
 
         //Expenses (intent)
-        RelativeLayout RLExpenses = (RelativeLayout) findViewById(R.id.RLExpenses);
+        RelativeLayout RLExpenses = findViewById(R.id.RLExpenses);
         RLExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +56,7 @@ public class Home extends AppCompatActivity {
         });
 
         //Tips (intent)
-        RelativeLayout RLTips = (RelativeLayout) findViewById(R.id.RLTips);
+        RelativeLayout RLTips = findViewById(R.id.RLTips);
         RLTips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

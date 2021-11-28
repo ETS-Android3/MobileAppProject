@@ -24,7 +24,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/quicksand"
             android:gravity="center_vertical"
-            android:paddingLeft="25dp"
+            android:paddingStart="25dp"
             android:text="Expenses"
             android:textColor="#F9F3F3"
             android:textSize="20sp"

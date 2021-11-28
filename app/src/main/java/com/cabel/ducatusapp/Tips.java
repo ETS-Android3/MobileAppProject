@@ -24,7 +24,7 @@ public class Tips extends AppCompatActivity {
         setContentView(R.layout.activity_tips);
 
         //Home icon intent
-        Button btnHome = (Button) findViewById(R.id.btnHome);
+        Button btnHome = findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,7 +34,7 @@ public class Tips extends AppCompatActivity {
         });
 
         //Budgeted icon intent
-        Button btnBudgeted = (Button) findViewById(R.id.btnBudgeted);
+        Button btnBudgeted = findViewById(R.id.btnBudgeted);
         btnBudgeted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +44,7 @@ public class Tips extends AppCompatActivity {
         });
 
         //Expenses icon intent
-        Button btnExpenses = (Button) findViewById(R.id.btnExpenses);
+        Button btnExpenses = findViewById(R.id.btnExpenses);
         btnExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

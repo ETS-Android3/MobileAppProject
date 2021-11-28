@@ -25,13 +25,13 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ImageButton btnBack = (ImageButton) findViewById(R.id.btnBack);
-        TextView tvUser = (TextView) findViewById(R.id.tvUser);
-        TextView editPersonalDetails = (TextView) findViewById(R.id.editPersonalDetails);
-        Switch switcher = (Switch) findViewById(R.id.switcher);
-        RelativeLayout RLSwitch = (RelativeLayout) findViewById(R.id.RLSwitch);
-        TextView tvChangePassword = (TextView) findViewById(R.id.tvChangePassword);
-        TextView tvLogout = (TextView) findViewById(R.id.tvLogout);
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        TextView tvUser = findViewById(R.id.tvUser);
+        TextView editPersonalDetails = findViewById(R.id.editPersonalDetails);
+        Switch switcher = findViewById(R.id.switcher);
+        RelativeLayout RLSwitch = findViewById(R.id.RLSwitch);
+        TextView tvChangePassword = findViewById(R.id.tvChangePassword);
+        TextView tvLogout = findViewById(R.id.tvLogout);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

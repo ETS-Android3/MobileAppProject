@@ -67,32 +67,33 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/etvCategory"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="70dp"
-            android:background="@drawable/bg_textbox"
+            android:background="?attr/textboxColor"
             android:ems="10"
             android:fontFamily="@font/roboto"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColor="#F9F3F3"
+            android:textColor="?attr/primaryTextColor"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/tvWarning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="70dp"
+            android:visibility="invisible"
             android:fontFamily="@font/roboto"
-            android:text="You can only perform subtraction to Activity column. The amount specified under the Activity will be deducted from the Budgeted."
+            android:text="@string/warning_text"
             android:textAlignment="center"
-            android:textColor="?attr/titleSecondaryColor"
-            android:textSize="13sp" />
+            android:textColor="?attr/warningTextColor"
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -105,7 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="Budgeted"
+                android:layout_marginStart="11dp"
+                android:text="Budget"
                 android:textColor="?attr/titleSecondaryColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -117,7 +119,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_toEndOf="@+id/textView35"
                 android:fontFamily="@font/roboto"
-                android:text="Activity"
+                android:text="To Spend"
                 android:textColor="?attr/titleSecondaryColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -126,7 +128,7 @@
                 android:id="@+id/textView37"
                 android:layout_width="78dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="31dp"
+                android:layout_marginStart="29dp"
                 android:layout_toEndOf="@+id/textView36"
                 android:fontFamily="@font/roboto"
                 android:text="Available"
@@ -135,50 +137,51 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/etvBudget"
                 android:layout_width="80dp"
                 android:layout_height="36dp"
                 android:layout_below="@+id/textView35"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/bg_textbox"
+                android:background="?attr/textboxColor"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="#F9F3F3"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/etvActivity"
                 android:layout_width="80dp"
                 android:layout_height="36dp"
                 android:layout_below="@+id/textView36"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="20dp"
-                android:layout_toEndOf="@+id/editTextTextPersonName4"
-                android:background="@drawable/bg_textbox"
+                android:layout_toEndOf="@+id/etvBudget"
+                android:background="?attr/textboxColor"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="#F9F3F3"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/etvAvailable"
                 android:layout_width="80dp"
                 android:layout_height="36dp"
                 android:layout_below="@+id/textView37"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_toEndOf="@+id/editTextTextPersonName5"
-                android:background="@drawable/bg_textbox_white"
+                android:layout_toEndOf="@+id/etvActivity"
+                android:background="?attr/textboxColor"
+                android:clickable="false"
                 android:elevation="9dp"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="#5E5B5B"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="16sp" />
 
         </RelativeLayout>
@@ -191,7 +194,7 @@
             android:layout_marginRight="70dp">
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/btnSave"
                 android:layout_width="120dp"
                 android:layout_height="38dp"
                 android:background="@drawable/border_change_password"
@@ -202,11 +205,11 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/btnDelete"
                 android:layout_width="120dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="32dp"
-                android:layout_toEndOf="@+id/button11"
+                android:layout_toEndOf="@+id/btnSave"
                 android:background="@drawable/border_logout"
                 android:fontFamily="@font/roboto"
                 android:text="DELETE"

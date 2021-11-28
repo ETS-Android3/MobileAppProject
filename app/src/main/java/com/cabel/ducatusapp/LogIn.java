@@ -51,11 +51,11 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText etvUsername = (EditText) findViewById(R.id.etvUserLog);
-        EditText etvPassword = (EditText) findViewById(R.id.etvPassLog);
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
-        TextView tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
-        TextView tvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
+        EditText etvUsername = findViewById(R.id.etvUserLog);
+        EditText etvPassword = findViewById(R.id.etvPassLog);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        TextView tvForgotPass = findViewById(R.id.tvForgotPass);
+        TextView tvCreateAccount = findViewById(R.id.tvCreateAccount);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
