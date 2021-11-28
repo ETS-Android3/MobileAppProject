@@ -32,7 +32,6 @@ public class LogIn extends AppCompatActivity {
     private Boolean userKey = false;
     private Boolean passwordKey = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);

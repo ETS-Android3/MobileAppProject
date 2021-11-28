@@ -20,4 +20,5 @@
     <attr name="darkGreyTextColor" format="color"/>
     <attr name="blackTextColor" format="color"/>
     <attr name="loginBG" format="color"/>
+    <attr name="loginImgBG" format="reference"/>
 </resources>

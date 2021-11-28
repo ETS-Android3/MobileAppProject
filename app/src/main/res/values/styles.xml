@@ -26,6 +26,7 @@
         <item name="darkGreyTextColor">#5E5B5B</item>
         <item name="blackTextColor">#000000</item>
         <item name="loginBG">#28666E</item>
+        <item name="loginImgBG">@drawable/loginbg3</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
@@ -52,6 +53,7 @@
         <item name="darkGreyTextColor">#F9F3F3</item>
         <item name="blackTextColor">#F9F3F3</item>
         <item name="loginBG">#253044</item>
+        <item name="loginImgBG">@drawable/logindm3</item>
     </style>
 
     <style name="SettingsLight" parent="AppThemeLight">
