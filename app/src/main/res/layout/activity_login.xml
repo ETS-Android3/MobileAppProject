@@ -52,6 +52,8 @@
                 android:id="@+id/imgBG"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 app:srcCompat="?attr/loginImgBG" />
 
             <LinearLayout
@@ -72,7 +74,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/etvUserLog"
+                    android:id="@+id/etvUserReg"
                     android:layout_width="277dp"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -88,7 +90,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/etvPassLog"
+                    android:id="@+id/etvPassReg"
                     android:layout_width="277dp"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -105,7 +107,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/btnLogin"
+                    android:id="@+id/btnRegister"
                     android:layout_width="277dp"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -141,7 +143,7 @@
                         android:textColor="#FFFFFF" />
 
                     <TextView
-                        android:id="@+id/tvCreateAccount"
+                        android:id="@+id/tvLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"

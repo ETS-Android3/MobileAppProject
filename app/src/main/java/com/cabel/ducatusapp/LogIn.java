@@ -4,16 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,11 +46,11 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText etvUsername = findViewById(R.id.etvUserLog);
-        EditText etvPassword = findViewById(R.id.etvPassLog);
-        Button btnLogin = findViewById(R.id.btnLogin);
+        EditText etvUsername = findViewById(R.id.etvUserReg);
+        EditText etvPassword = findViewById(R.id.etvPassReg);
+        Button btnLogin = findViewById(R.id.btnRegister);
         TextView tvForgotPass = findViewById(R.id.tvForgotPass);
-        TextView tvCreateAccount = findViewById(R.id.tvCreateAccount);
+        TextView tvCreateAccount = findViewById(R.id.tvLogin);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
