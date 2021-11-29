@@ -1,5 +1,6 @@
 package com.cabel.ducatusapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Home extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
@@ -24,6 +32,77 @@ public class Home extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        TextView tvBudgetItems = findViewById(R.id.tvBudgetItems);
+        TextView tvExpenseItems = findViewById(R.id.tvExpenseItems);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget");
+        Query queryBudget = databaseReference.orderByKey();
+        queryBudget.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String uid = SharedPrefs.getCurrentUserId(Home.this);
+                int items = 0;
+                for(DataSnapshot child: snapshot.getChildren()) {
+                    if(snapshot.exists()) {
+                        if(child.child("userID").getValue().toString().equals(uid)) { // get items created by current user and count
+                            items++;
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if(items == 1) {
+                    tvBudgetItems.setText(items + " item");
+                }
+                else {
+                    tvBudgetItems.setText(items + " items");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("expenses");
+        Query queryExpense = databaseReference.orderByKey();
+        queryExpense.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String uid = SharedPrefs.getCurrentUserId(Home.this);
+                int items = 0;
+                for(DataSnapshot child: snapshot.getChildren()) {
+                    if(snapshot.exists()) {
+                        if(child.child("userID").getValue().toString().equals(uid)) { // get items created by current user and count
+                            items++;
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if(items == 1) {
+                    tvExpenseItems.setText(items + " item");
+                }
+                else {
+                    tvExpenseItems.setText(items + " items");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // Menu / Profile Settings (intent)
         Button btnSettings = findViewById(R.id.btnSettings);

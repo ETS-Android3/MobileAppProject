@@ -77,10 +77,10 @@ public class LogIn extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child: snapshot.getChildren()) {
-                            SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
                             try {
                                 Thread.sleep(0);
                                 if(child.child("username").getValue(String.class).equals(username)) {
+                                    SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
                                     userKey = true; //set user as valid
                                     if(child.child("password").getValue(String.class).equals(password)) {
                                         passwordKey = true; //set password as valid

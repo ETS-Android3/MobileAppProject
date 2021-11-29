@@ -70,6 +70,7 @@ public class SharedPrefs {
 
     public static void clearData(Context context) {
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.remove(CURRENT_USER_ID);
         editor.remove(CURRENT_USER);
         editor.remove(USERTYPE);
         editor.remove(LOGIN_STATUS);

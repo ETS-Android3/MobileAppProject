@@ -117,17 +117,16 @@ public class SignUp extends AppCompatActivity {
                 queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        try {
-                            Thread.sleep(0);
-                            for(DataSnapshot child: snapshot.getChildren()) {
-                                if(child.child("username").getValue(String.class).equals(username)) { //check if username already exists
-                                    if(validKey.equals(false)) { //check validity of key to avoid late data retrieval
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            if(snapshot.exists()) {
+                                if (child.child("username").getValue(String.class).equals(username)) { //check if username already exists
+                                    if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
                                         Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 else {
-                                    if(child.child("email").getValue(String.class).equals(email)) { //check if email already exists
-                                        if(validKey.equals(false)) { //check validity of key to avoid late data retrieval
+                                    if (child.child("email").getValue(String.class).equals(email)) { //check if email already exists
+                                        if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
                                             Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -144,9 +143,9 @@ public class SignUp extends AppCompatActivity {
                                     }
                                 }
                             }
-                        }
-                        catch(InterruptedException e) {
-                            e.printStackTrace();
+                            else {
+                                break;
+                            }
                         }
                     }
                     @Override
