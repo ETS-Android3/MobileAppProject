@@ -89,22 +89,39 @@
                     android:paddingEnd="20dp"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/etvPassReg"
+                <LinearLayout
                     android:layout_width="277dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_textbox_login"
-                    android:drawableStart="@drawable/ic_outline_lock_24"
-                    android:drawableEnd="@drawable/ic_outline_visibility_off_24"
-                    android:drawablePadding="20dp"
-                    android:ems="10"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="20dp"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etvPassReg"
+                        android:layout_width="220dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_textbox_login"
+                        android:drawableStart="@drawable/ic_outline_lock_24"
+                        android:drawablePadding="20dp"
+                        android:ems="10"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="20dp"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/imgPassVisibility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#00FFFFFF"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        app:srcCompat="@drawable/ic_baseline_visibility_off_24"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnRegister"

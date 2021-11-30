@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,12 +22,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Key;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 public class SignUp extends AppCompatActivity {
+    private static final String ALGORITHM = "AES";
+    private static final String KEY = "1Hbfh667adfDEJ78";
     private SharedPrefs sharedPrefs;
     private FirebaseDatabase database;
     private DatabaseReference ref;
     private Integer userID = 0;
     private Boolean validKey = false;
+    private Boolean passVisibility = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +53,25 @@ public class SignUp extends AppCompatActivity {
         EditText etvUsername = findViewById(R.id.etvUserReg);
         EditText etvEmail = findViewById(R.id.etvEmailReg);
         EditText etvPassword = findViewById(R.id.etvPassReg);
+        ImageButton showPass = findViewById(R.id.imgPassVisibility);
         Button btnRegister = findViewById(R.id.btnRegister);
         TextView tvLogin = findViewById(R.id.tvLogin);
+
+        showPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!passVisibility) {
+                    passVisibility = true;
+                    etvPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    showPass.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                }
+                else {
+                    passVisibility = false;
+                    etvPassword.setTransformationMethod(null);
+                    showPass.setImageResource(R.drawable.ic_baseline_visibility_24);
+                }
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +97,21 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
+                //username and password must not be same
+                if(username.equals(password)) {
+                    Toast.makeText(getApplicationContext(), "Username and password must not be the same", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //check email validity
                 if(!email.contains("@")) {
                     Toast.makeText(getApplicationContext(), "Email is invalid", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //email and password must not be same
+                if(email.equals(password)) {
+                    Toast.makeText(getApplicationContext(), "Email and password must not be the same", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -132,14 +172,21 @@ public class SignUp extends AppCompatActivity {
                                     }
                                     else { //valid credentials -> insert to database
                                         validKey = true; //set credentials as valid
-                                        User user = new User(userID, username, email, password, "user");
-                                        databaseReference.child(userID.toString()).setValue(user);
-                                        Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
-                                        SharedPrefs.setLoginStatus(SignUp.this, true);
-                                        SharedPrefs.setUsertype(SignUp.this, "user");
-                                        SharedPrefs.setCurrentUser(SignUp.this, username);
-                                        SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
-                                        startActivity(new Intent(getApplicationContext(), Home.class));
+                                        try {
+                                            String cipherText = encrypt(password);
+                                            Toast.makeText(getApplicationContext(), decrypt(cipherText), Toast.LENGTH_SHORT).show();
+                                            /*User user = new User(userID, username, email, cipherText, "user");
+                                            databaseReference.child(userID.toString()).setValue(user);
+                                            Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
+                                            SharedPrefs.setLoginStatus(SignUp.this, true);
+                                            SharedPrefs.setUsertype(SignUp.this, "user");
+                                            SharedPrefs.setCurrentUser(SignUp.this, username);
+                                            SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
+                                            startActivity(new Intent(getApplicationContext(), Home.class));*/
+                                        }
+                                        catch(Exception e) {
+                                            System.out.println("Error: " + e);
+                                        }
                                     }
                                 }
                             }
@@ -163,5 +210,34 @@ public class SignUp extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public static String encrypt(String value) throws Exception
+    {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(SignUp.ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte [] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
+        String encryptedValue64 = Base64.encodeToString(encryptedByteValue, Base64.DEFAULT);
+        return encryptedValue64;
+
+    }
+
+    public static String decrypt(String value) throws Exception
+    {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(SignUp.ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedValue64 = Base64.decode(value, Base64.DEFAULT);
+        byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
+        String decryptedValue = new String(decryptedByteValue,"utf-8");
+        return decryptedValue;
+
+    }
+
+    private static Key generateKey() throws Exception
+    {
+        Key key = new SecretKeySpec(SignUp.KEY.getBytes(),SignUp.ALGORITHM);
+        return key;
     }
 }
