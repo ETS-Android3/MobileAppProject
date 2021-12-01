@@ -27,4 +27,10 @@
 
     <string name="hellomsg">Hello There!</string>
     <string name="warning_text">Budget must be higher than to spend amount</string>
+
+    <string name="tip1">Be organized</string>
+    <string name="tip2">Don\'t eat out</string>
+    <string name="tip3">Lessen your energy consumption</string>
+    <string name="tip4">Stay at home</string>
+    <string name="tip5">Track your expenses</string>
 </resources>

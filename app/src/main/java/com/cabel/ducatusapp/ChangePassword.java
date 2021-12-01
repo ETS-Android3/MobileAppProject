@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,10 +19,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.view.Change;
+
+import java.security.Key;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class ChangePassword extends AppCompatActivity {
+    private static final String ALGORITHM = "AES";
+    private static final String KEY = "1Hbfh667adfDEJ78";
     private SharedPrefs sharedPrefs;
     private Boolean key = false;
+    private Boolean passVisibility1 = false;
+    private Boolean passVisibility2 = false;
+    private Boolean passVisibility3 = false;
+    private String cipherPass = "";
+    private String cipherText = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
@@ -38,6 +55,56 @@ public class ChangePassword extends AppCompatActivity {
         EditText etvConfNewPass = findViewById(R.id.etvConfNewPass);
         Button btnChangePassword = findViewById(R.id.btnChangePassword);
         Button btnCancel = findViewById(R.id.btnCancel);
+        ImageButton showPass1 = findViewById(R.id.imgPassVisibility1);
+        ImageButton showPass2 = findViewById(R.id.imgPassVisibility2);
+        ImageButton showPass3 = findViewById(R.id.imgPassVisibility3);
+
+        showPass1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!passVisibility1) {
+                    passVisibility1 = true;
+                    etvCurrentPass.setTransformationMethod(new PasswordTransformationMethod());
+                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                }
+                else {
+                    passVisibility1 = false;
+                    etvCurrentPass.setTransformationMethod(null);
+                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_24);
+                }
+            }
+        });
+
+        showPass2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!passVisibility2) {
+                    passVisibility2 = true;
+                    etvNewPass.setTransformationMethod(new PasswordTransformationMethod());
+                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                }
+                else {
+                    passVisibility2 = false;
+                    etvNewPass.setTransformationMethod(null);
+                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_24);
+                }
+            }
+        });
+        showPass2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!passVisibility3) {
+                    passVisibility3 = true;
+                    etvConfNewPass.setTransformationMethod(new PasswordTransformationMethod());
+                    showPass3.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                }
+                else {
+                    passVisibility3 = false;
+                    etvConfNewPass.setTransformationMethod(null);
+                    showPass3.setImageResource(R.drawable.ic_baseline_visibility_24);
+                }
+            }
+        });
 
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,15 +148,28 @@ public class ChangePassword extends AppCompatActivity {
 
                 String uid = SharedPrefs.getCurrentUserId(ChangePassword.this); //retrieve current user's userID
 
-
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users/" + uid);
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.child("password").getValue(String.class).equals(currentPassword)) {
+                        try {
+                            cipherPass = decrypt(snapshot.child("password").getValue(String.class));
+                        }
+                        catch(Exception e) {
+                            System.out.println("Error: " + e);
+                        }
+
+                        if(cipherPass.equals(currentPassword)) {
                             key = true; //set key as valid
+                            try {
+                                cipherText = encrypt(newPassword);
+                            }
+                            catch(Exception e) {
+                                System.out.println("Error: " + e);
+                            }
+
                             Toast.makeText(getApplicationContext(), "Successfully changed password", Toast.LENGTH_SHORT).show();
-                            databaseReference.child("/password").setValue(newPassword);
+                            databaseReference.child("/password").setValue(cipherText);
                             startActivity(new Intent(ChangePassword.this, Settings.class));
                         }
                         else {
@@ -117,5 +197,34 @@ public class ChangePassword extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static String encrypt(String value) throws Exception
+    {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(ChangePassword.ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte [] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
+        String encryptedValue64 = Base64.encodeToString(encryptedByteValue, Base64.DEFAULT);
+        return encryptedValue64;
+
+    }
+
+    public static String decrypt(String value) throws Exception
+    {
+        Key key = generateKey();
+        Cipher cipher = Cipher.getInstance(ChangePassword.ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedValue64 = Base64.decode(value, Base64.DEFAULT);
+        byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
+        String decryptedValue = new String(decryptedByteValue,"utf-8");
+        return decryptedValue;
+
+    }
+
+    private static Key generateKey() throws Exception
+    {
+        Key key = new SecretKeySpec(ChangePassword.KEY.getBytes(),ChangePassword.ALGORITHM);
+        return key;
     }
 }
