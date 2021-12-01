@@ -31,8 +31,6 @@ public class SignUp extends AppCompatActivity {
     private static final String ALGORITHM = "AES";
     private static final String KEY = "1Hbfh667adfDEJ78";
     private SharedPrefs sharedPrefs;
-    private FirebaseDatabase database;
-    private DatabaseReference ref;
     private Integer userID = 0;
     private Boolean validKey = false;
     private Boolean passVisibility = false;

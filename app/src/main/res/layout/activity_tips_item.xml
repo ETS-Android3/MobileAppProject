@@ -31,16 +31,16 @@
         tools:layout_editor_absoluteX="0dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_baseline_arrow_back_24"
             android:textColor="?attr/greyIcon" />
 
         <TextView
-            android:id="@+id/textView46"
+            android:id="@+id/tipsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -48,12 +48,12 @@
             android:layout_marginRight="40dp"
             android:fontFamily="@font/roboto"
             android:text="Lorem Ipsum"
-            android:textColor="?attr/blackTextColor"
-            android:textSize="18sp"
+            android:textColor="?attr/primaryTextColor"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView45"
+            android:id="@+id/tipsContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -62,7 +62,8 @@
             android:fontFamily="@font/roboto"
             android:justificationMode="inter_word"
             android:text="           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            android:textColor="?attr/blackTextColor" />
+            android:textColor="?attr/blackTextColor"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -73,7 +74,7 @@
         android:paddingRight="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/textView43"
-        app:layout_constraintVertical_bias="0.97"
+        app:layout_constraintVertical_bias="0.9775"
         tools:layout_editor_absoluteX="0dp">
 
         <Button
@@ -93,7 +94,7 @@
             android:layout_marginStart="-125dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/btnHome"
-            android:background="@drawable/budgetgr" />
+            android:background="@drawable/ic_icon_budget" />
 
         <Button
             android:id="@+id/btnExpenses"
@@ -103,17 +104,17 @@
             android:layout_marginStart="85dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/btnBudgeted"
-            android:background="@drawable/expensebl" />
+            android:background="@drawable/ic_icon_expense" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btnTips"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/ic_outline_tips_and_updates_24" />
+            android:background="@drawable/ic_outline_tips_and_updates_active" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
