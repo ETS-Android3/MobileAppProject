@@ -174,15 +174,14 @@ public class SignUp extends AppCompatActivity {
                                         validKey = true; //set credentials as valid
                                         try {
                                             String cipherText = encrypt(password);
-                                            Toast.makeText(getApplicationContext(), decrypt(cipherText), Toast.LENGTH_SHORT).show();
-                                            /*User user = new User(userID, username, email, cipherText, "user");
+                                            User user = new User(userID, username, email, cipherText, "user");
                                             databaseReference.child(userID.toString()).setValue(user);
                                             Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
                                             SharedPrefs.setLoginStatus(SignUp.this, true);
                                             SharedPrefs.setUsertype(SignUp.this, "user");
                                             SharedPrefs.setCurrentUser(SignUp.this, username);
                                             SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
-                                            startActivity(new Intent(getApplicationContext(), Home.class));*/
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
                                         }
                                         catch(Exception e) {
                                             System.out.println("Error: " + e);

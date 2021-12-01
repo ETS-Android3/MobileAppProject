@@ -37,7 +37,7 @@ public class LogIn extends AppCompatActivity {
     private Boolean userKey = false;
     private Boolean passwordKey = false;
     private Boolean passVisibility = false;
-    private String firebasePass = "";
+    private String cipherPass = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,13 +111,13 @@ public class LogIn extends AppCompatActivity {
                                     userKey = true; //set user as valid
                                     SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
                                     try {
-                                        firebasePass = decrypt(child.child("password").getValue(String.class));
+                                        cipherPass = decrypt(child.child("password").getValue(String.class));
                                     }
                                     catch(Exception e) {
                                         System.out.println("Error: " + e);
                                     }
 
-                                    if (firebasePass.equals(password)) {
+                                    if (cipherPass.equals(password)) {
                                         passwordKey = true; //set password as valid
                                         if (child.child("usertype").getValue(String.class).equals("admin")) {
                                             SharedPrefs.setLoginStatus(LogIn.this, true);
