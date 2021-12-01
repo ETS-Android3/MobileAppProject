@@ -158,6 +158,71 @@
             android:layout_marginTop="10dp"
             android:background="?attr/colorControlNormal" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="6dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="133dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="139dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="#5E5B5B" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="101dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="235dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="#5E5B5B" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="98dp"
+                    android:layout_height="23dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="243dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="TextView"
+                    android:textColor="#5E5B5B" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
 
