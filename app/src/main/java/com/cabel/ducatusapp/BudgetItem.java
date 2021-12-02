@@ -42,6 +42,7 @@ public class BudgetItem extends AppCompatActivity {
 
         TextView tvWarning = findViewById(R.id.tvWarning);
         EditText etvCategory = findViewById(R.id.etvCategory);
+        EditText etvDescription = findViewById(R.id.etvDescription);
         EditText etvBudget = findViewById(R.id.etvBudget);
         EditText etvActivity = findViewById(R.id.etvActivity);
         EditText etvAvailable = findViewById(R.id.etvAvailable);
@@ -86,7 +87,7 @@ public class BudgetItem extends AppCompatActivity {
                 String category = etvCategory.getText().toString();
                 int budget = Integer.parseInt(etvBudget.getText().toString());
                 int activity = Integer.parseInt(etvActivity.getText().toString());
-                String description = "";
+                String description = etvDescription.getText().toString();
 
                 available = budget - activity;
 
@@ -150,6 +151,7 @@ public class BudgetItem extends AppCompatActivity {
                         userID = Integer.parseInt(SharedPrefs.getCurrentUserId(BudgetItem.this));
                         BudgetItemClass budgetItem = new BudgetItemClass(itemID, category, budget, activity, available, description, userID);
                         databaseReference.child(String.valueOf(itemID)).setValue(budgetItem);
+                        startActivity(new Intent(getApplicationContext(), Budget.class));
                     }
 
                     @Override

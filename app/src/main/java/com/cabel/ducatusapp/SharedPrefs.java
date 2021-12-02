@@ -2,6 +2,7 @@ package com.cabel.ducatusapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
 public class SharedPrefs {
@@ -9,7 +10,8 @@ public class SharedPrefs {
     private static final String LOGIN_STATUS = "status_login", USERTYPE = "usertype";
     private static final String CURRENT_USER = "current_user";
     private static final String CURRENT_USER_ID = "current_user_id";
-
+    private static final String CURRENT_USER_IMAGE = "current_user_image";
+    
     public SharedPrefs(Context context) {
         mySharedPref = context.getSharedPreferences("filename", Context.MODE_PRIVATE);
     }
@@ -45,6 +47,16 @@ public class SharedPrefs {
     public static void setCurrentUserId(Context context, String current_user_id) {
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putString(CURRENT_USER_ID, current_user_id);
+        editor.apply();
+    }
+
+    public static String getCurrentUserImage(Context context, String current_user_image) {
+        return getSharedPreferences(context).getString(CURRENT_USER_IMAGE, "");
+    }
+
+    public static void setCurrentUserImage(Context context, String current_user_image) {
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(CURRENT_USER_IMAGE, current_user_image);
         editor.apply();
     }
 

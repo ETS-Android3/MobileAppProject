@@ -2,24 +2,24 @@ package com.cabel.ducatusapp;
 
 public class BudgetItemClass {
     private int itemID;
-    private String itemName;
-    private int budgetAmount;
-    private int budgetMoneySpent;
-    private int budgetAvailableMoney;
-    private String budgetDescription;
+    private String category;
+    private int budget;
+    private int activity;
+    private int available;
+    private String description  ;
     private int userID;
 
     public BudgetItemClass() {
 
     }
 
-    public BudgetItemClass(int itemID, String itemName, int budgetAmount, int budgetMoneySpent, int budgetAvailableMoney, String budgetDescription, int userID) {
+    public BudgetItemClass(int itemID, String category, int budget, int activity, int available, String description, int userID) {
         this.itemID = itemID;
-        this.itemName = itemName;
-        this.budgetAmount = budgetAmount;
-        this.budgetMoneySpent = budgetMoneySpent;
-        this.budgetAvailableMoney = budgetAvailableMoney;
-        this.budgetDescription = budgetDescription;
+        this.category = category;
+        this.budget = budget;
+        this.activity = activity;
+        this.available = available;
+        this.description = description;
         this.userID = userID;
     }
 
@@ -31,44 +31,44 @@ public class BudgetItemClass {
         this.itemID = itemID;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getCategory() {
+        return category;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public int getBudgetAmount() {
-        return budgetAmount;
+    public int getBudget() {
+        return budget;
     }
 
-    public void setBudgetAmount(int budgetAmount) {
-        this.budgetAmount = budgetAmount;
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 
-    public int getBudgetMoneySpent() {
-        return budgetMoneySpent;
+    public int getActivity() {
+        return activity;
     }
 
-    public void setBudgetMoneySpent(int budgetMoneySpent) {
-        this.budgetMoneySpent = budgetMoneySpent;
+    public void setActivity(int activity) {
+        this.activity = activity;
     }
 
-    public int getBudgetAvailableMoney() {
-        return budgetAvailableMoney;
+    public int getAvailable() {
+        return available;
     }
 
-    public void setBudgetAvailableMoney(int budgetAvailableMoney) {
-        this.budgetAvailableMoney = budgetAvailableMoney;
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
-    public String getBudgetDescription() {
-        return budgetDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBudgetDescription(String budgetDescription) {
-        this.budgetDescription = budgetDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getUserID() {
