@@ -32,6 +32,7 @@ public class Settings extends AppCompatActivity {
         RelativeLayout RLSwitch = findViewById(R.id.RLSwitch);
         TextView tvChangePassword = findViewById(R.id.tvChangePassword);
         TextView tvLogout = findViewById(R.id.tvLogout);
+        TextView tvDevelopers = findViewById(R.id.tvDevelopers);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,13 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Settings.this, ChangePassword.class));
+            }
+        });
+
+        tvDevelopers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Settings.this, Developers.class));
             }
         });
 
