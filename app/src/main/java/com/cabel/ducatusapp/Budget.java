@@ -2,13 +2,19 @@ package com.cabel.ducatusapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,12 +53,40 @@ public class Budget extends AppCompatActivity {
                     if(snapshot.exists()) {
                         if(child.child("userID").getValue().toString().equals(uid)) {
                             String itemID = child.child("itemID").getValue().toString();
-                            TextView textView = new TextView(Budget.this);
-                            textView.setText(itemID);
-                            textView.setBackgroundColor(Color.parseColor("#FF0000"));
-                            textView.setTextColor(Color.parseColor("#00FF00"));
 
-                            layoutItems.addView(textView);
+                            CardView cardView = new CardView(Budget.this);
+                            CardView.LayoutParams cardParam = new CardView.LayoutParams(
+                                    300,
+                                    64
+                            );
+                            cardParam.setMargins(30, 10, 30, 0);
+                            cardView.setLayoutParams(cardParam);
+                            cardView.setId(R.id.cardview);
+                            cardView.setRadius(13.125f);
+                            cardView.setCardElevation(15.75f);
+
+                            RelativeLayout rl = new RelativeLayout(Budget.this);
+                            RelativeLayout.LayoutParams rlParam = new RelativeLayout.LayoutParams(
+                                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                                    RelativeLayout.LayoutParams.MATCH_PARENT
+                            );
+                            rl.setLayoutParams(rlParam);
+                            rl.setId(R.id.rl);
+                            cardView.addView(rl);
+                            /*LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            ViewGroup viewGroup = findViewById(R.id.cardview);
+                            inflater.inflate(R.id.rl, viewGroup);*/
+
+                            TextView category = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams textParam = new RelativeLayout.LayoutParams(60, 18);
+                            textParam.setMargins(133, 11, 158, 29);
+                            category.setLayoutParams(textParam);
+                            category.setText("Yes");
+
+                            category.setTextColor(Color.parseColor("#5E5B5B"));
+                            rl.addView(category);
+
+                            layoutItems.addView(cardView);
                             Toast.makeText(getApplicationContext(), itemID, Toast.LENGTH_SHORT).show();
                         }
                         else  {
