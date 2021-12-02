@@ -55,6 +55,7 @@ public class UserProfile extends AppCompatActivity {
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
         imgProfilePic = findViewById(R.id.imgProfilePic);
         txtUpdatePic = findViewById(R.id.txtUpdatePic);
         txtUpdatePic.setOnClickListener(new View.OnClickListener() {

@@ -52,6 +52,14 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imgTips"
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/tips1" />
+
         <TextView
             android:id="@+id/tipsContent"
             android:layout_width="match_parent"
@@ -59,11 +67,11 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/quicksand"
             android:justificationMode="inter_word"
             android:text="           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             android:textColor="?attr/blackTextColor"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <RelativeLayout

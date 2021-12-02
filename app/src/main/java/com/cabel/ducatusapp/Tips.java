@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class Tips extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class Tips extends AppCompatActivity {
 
         Intent intent = new Intent(Tips.this, TipsItem.class);
 
+        ImageView imgTips = findViewById(R.id.imgTips);
+
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,11 +46,11 @@ public class Tips extends AppCompatActivity {
                         "When it comes to personal spending, you should know what you have and " +
                         "what you need. Knowing them would greatly help with controlling your " +
                         "spending as you no longer buy things you want and buy what's only " +
-                        "missing on your shelves. Taking the time to check your current " +
-                        "inventory before going shopping would be of great help to make sure " +
-                        "you only buy things that you need and not have impulsive or unnecessary " +
-                        "purchases.";
+                        "missing on your shelves. Checking your current inventory before going " +
+                        "shopping would be of great help to make sure you only buy things that " +
+                        "you need.";
                 intent.putExtra("title", title);
+                intent.putExtra("image_url",R.drawable.tips1);
                 intent.putExtra("message", message);
                 startActivity(intent);
             }
@@ -66,6 +69,7 @@ public class Tips extends AppCompatActivity {
                         "than buying out food, you can even get more than one meal from a " +
                         "single buy.";
                 intent.putExtra("title", title);
+                intent.putExtra("image_url",R.drawable.tips2);
                 intent.putExtra("message", message);
                 startActivity(intent);
             }
@@ -82,6 +86,7 @@ public class Tips extends AppCompatActivity {
                         "and use our appliances only when we need them. Unplug them when they " +
                         "are not in use!";
                 intent.putExtra("title", title);
+                intent.putExtra("image_url",R.drawable.tips3);
                 intent.putExtra("message", message);
                 startActivity(intent);
             }
@@ -97,6 +102,7 @@ public class Tips extends AppCompatActivity {
                         "friends shouldn't be expensive. Watch a movie and pamper yourselves " +
                         "in the comforts of your very own home.";
                 intent.putExtra("title", title);
+                intent.putExtra("image_url",R.drawable.tips4);
                 intent.putExtra("message", message);
                 startActivity(intent);
             }
@@ -112,10 +118,9 @@ public class Tips extends AppCompatActivity {
                         "of your needs. With this, you can realize where you are spending too much " +
                         "on, and maybe have awareness on what expenditures you can completely " +
                         "stop spending on! You get to learn your spending habits and know what " +
-                        "you can improve on. Your money can be saved on a much later date when " +
-                        "you need them. Just remember that spoiling yourself is not wrong, " +
-                        "although it should be in moderation.";
+                        "you can improve on. ";
                 intent.putExtra("title", title);
+                intent.putExtra("image_url",R.drawable.tips5);
                 intent.putExtra("message", message);
                 startActivity(intent);
             }
