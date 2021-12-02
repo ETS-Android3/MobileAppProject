@@ -1,8 +1,10 @@
 package com.cabel.ducatusapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,7 +27,7 @@ public class BudgetItem extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private int itemID = 0;
     private int userID;
-    private int available = 0;
+    private float available = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,10 @@ public class BudgetItem extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_item);
+
+        if(SharedPrefs.getCurrentUserId(BudgetItem.this) == null) {
+            startActivity(new Intent(BudgetItem.this, LogIn.class));
+        }
 
         TextView tvWarning = findViewById(R.id.tvWarning);
         EditText etvCategory = findViewById(R.id.etvCategory);
@@ -64,12 +70,12 @@ public class BudgetItem extends AppCompatActivity {
                 String activity = etvActivity.getText().toString();
 
                 if(!TextUtils.isEmpty(activity)) {
-                    if(Integer.parseInt(activity) > Integer.parseInt(budget)) {
+                    if(Float.parseFloat(activity) > Float.parseFloat(budget)) {
                         etvAvailable.setText(null);
                         tvWarning.setVisibility(View.VISIBLE);
                     }
                     else {
-                        available = Integer.parseInt(budget) - Integer.parseInt(activity);
+                        available = Float.parseFloat(budget) - Float.parseFloat(activity);
                         etvAvailable.setText(String.valueOf(available));
                         tvWarning.setVisibility(View.INVISIBLE);
                     }
@@ -85,8 +91,8 @@ public class BudgetItem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String category = etvCategory.getText().toString();
-                int budget = Integer.parseInt(etvBudget.getText().toString());
-                int activity = Integer.parseInt(etvActivity.getText().toString());
+                float budget = Float.parseFloat(etvBudget.getText().toString());
+                float activity = Float.parseFloat(etvActivity.getText().toString());
                 String description = etvDescription.getText().toString();
 
                 available = budget - activity;
@@ -94,6 +100,11 @@ public class BudgetItem extends AppCompatActivity {
                 //Check if fields are empty
                 if (TextUtils.isEmpty(category)) {
                     Toast.makeText(getApplicationContext(), "Enter category", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(description)) {
+                    Toast.makeText(getApplicationContext(), "Enter description", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -144,30 +155,49 @@ public class BudgetItem extends AppCompatActivity {
                     }
                 });
 
-                Query queryAll = databaseReference.orderByKey();
-                queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        userID = Integer.parseInt(SharedPrefs.getCurrentUserId(BudgetItem.this));
-                        BudgetItemClass budgetItem = new BudgetItemClass(itemID, category, budget, activity, available, description, userID);
-                        databaseReference.child(String.valueOf(itemID)).setValue(budgetItem);
-                        startActivity(new Intent(getApplicationContext(), Budget.class));
-                    }
+                AlertDialog.Builder builder = new AlertDialog.Builder(BudgetItem.this);
+                builder.setCancelable(true);
+                builder.setTitle("Add Item");
+                builder.setMessage("Save details?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Query queryAll = databaseReference.orderByKey();
+                                queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        userID = Integer.parseInt(SharedPrefs.getCurrentUserId(BudgetItem.this));
+                                        BudgetItemClass budgetItem = new BudgetItemClass(itemID, category, budget, activity, available, description, userID);
+                                        databaseReference.child(String.valueOf(itemID)).setValue(budgetItem);
+                                        startActivity(new Intent(getApplicationContext(), Budget.class));
+                                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
 
+                                    }
+                                });
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                     }
                 });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
+
         //back button intent
         Button btnBackBudgeted = (Button) findViewById(R.id.btnBackBudgeted);
         btnBackBudgeted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BudgetItem.this, Budget.class);
-                startActivity(intent);
+                startActivity(new Intent(BudgetItem.this, Budget.class));
             }
         });
 

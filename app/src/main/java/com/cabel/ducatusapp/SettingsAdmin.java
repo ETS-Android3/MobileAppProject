@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class Settings extends AppCompatActivity {
+public class SettingsAdmin extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
 
     @Override
@@ -23,10 +23,14 @@ public class Settings extends AppCompatActivity {
             setTheme(R.style.SettingsLight);
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_settings_admin);
 
-        if(SharedPrefs.getCurrentUserId(Settings.this) == null) {
-            startActivity(new Intent(Settings.this, LogIn.class));
+        if(SharedPrefs.getCurrentUserId(SettingsAdmin.this) == null) {
+            startActivity(new Intent(SettingsAdmin.this, LogIn.class));
+        }
+
+        if(!SharedPrefs.getUsertype(SettingsAdmin.this).equals("admin")) {
+            startActivity(new Intent(SettingsAdmin.this, LogIn.class));
         }
 
         ImageButton btnBack = findViewById(R.id.btnBack);
@@ -36,21 +40,22 @@ public class Settings extends AppCompatActivity {
         RelativeLayout RLSwitch = findViewById(R.id.RLSwitch);
         TextView tvChangePassword = findViewById(R.id.tvChangePassword);
         TextView tvLogout = findViewById(R.id.tvLogout);
+        TextView tvDevelopers = findViewById(R.id.tvDevelopers);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, Home.class);
+                Intent intent = new Intent(SettingsAdmin.this, Home.class);
                 startActivity(intent);
             }
         });
 
-        tvUser.setText(SharedPrefs.getCurrentUser(Settings.this));
+        tvUser.setText(SharedPrefs.getCurrentUser(SettingsAdmin.this));
 
         editPersonalDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Settings.this, UserProfile.class));
+                startActivity(new Intent(SettingsAdmin.this, UserProfile.class));
             }
         });
 
@@ -78,21 +83,28 @@ public class Settings extends AppCompatActivity {
         tvChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Settings.this, ChangePassword.class));
+                startActivity(new Intent(SettingsAdmin.this, ChangePassword.class));
+            }
+        });
+
+        tvDevelopers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsAdmin.this, Developers.class));
             }
         });
 
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPrefs.clearData(Settings.this);
-                startActivity(new Intent(Settings.this, LogIn.class));
+                SharedPrefs.clearData(SettingsAdmin.this);
+                startActivity(new Intent(SettingsAdmin.this, LogIn.class));
                 finish();
             }
         });
     }
     private void restartApp() {
-        startActivity(new Intent(getApplicationContext(), Settings.class));
+        startActivity(new Intent(getApplicationContext(), SettingsAdmin.class));
         finish();
     }
 }

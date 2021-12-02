@@ -33,6 +33,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        if(SharedPrefs.getCurrentUserId(Home.this) == null) {
+            startActivity(new Intent(Home.this, LogIn.class));
+        }
+
         TextView tvBudgetItems = findViewById(R.id.tvBudgetItems);
         TextView tvExpenseItems = findViewById(R.id.tvExpenseItems);
 
@@ -109,7 +113,13 @@ public class Home extends AppCompatActivity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Home.this, Settings.class));
+                if(SharedPrefs.getUsertype(Home.this).equals("user")) {
+                    startActivity(new Intent(Home.this, Settings.class));
+                }
+                else if(SharedPrefs.getUsertype(Home.this).equals("admin")) {
+                    startActivity(new Intent(Home.this, SettingsAdmin.class));
+                }
+
             }
         });
 

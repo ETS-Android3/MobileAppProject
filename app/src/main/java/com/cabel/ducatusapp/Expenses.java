@@ -27,6 +27,10 @@ public class Expenses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);
 
+        if(SharedPrefs.getCurrentUserId(Expenses.this) == null) {
+            startActivity(new Intent(Expenses.this, LogIn.class));
+        }
+
         //Display the current month and year
         TextView txtDate = (TextView) findViewById(R.id.txtDate);
         Calendar cal = Calendar.getInstance();

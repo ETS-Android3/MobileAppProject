@@ -26,6 +26,10 @@ public class Tips extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips);
 
+        if(SharedPrefs.getCurrentUserId(Tips.this) == null) {
+            startActivity(new Intent(Tips.this, LogIn.class));
+        }
+
         RelativeLayout rcard1 = findViewById(R.id.rcard1);
         CardView card1 = findViewById(R.id.card1);
         CardView card2 = findViewById(R.id.card2);

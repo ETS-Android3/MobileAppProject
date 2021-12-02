@@ -14,6 +14,14 @@ public class Developers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developers);
 
+        if(SharedPrefs.getCurrentUserId(Developers.this) == null) {
+            startActivity(new Intent(Developers.this, LogIn.class));
+        }
+
+        if(!SharedPrefs.getUsertype(Developers.this).equals("admin")) {
+            startActivity(new Intent(Developers.this, LogIn.class));
+        }
+
         Button btnBackDevs = (Button) findViewById(R.id.btnBackDevs);
         btnBackDevs.setOnClickListener(new View.OnClickListener() {
             @Override

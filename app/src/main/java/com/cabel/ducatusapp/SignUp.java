@@ -48,6 +48,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        TextView tvWarning = findViewById(R.id.tvWarning);
         EditText etvUsername = findViewById(R.id.etvUserReg);
         EditText etvEmail = findViewById(R.id.etvEmailReg);
         EditText etvPassword = findViewById(R.id.etvPassReg);
@@ -159,13 +160,17 @@ public class SignUp extends AppCompatActivity {
                             if(snapshot.exists()) {
                                 if (child.child("username").getValue(String.class).equals(username)) { //check if username already exists
                                     if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                        Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
+                                        tvWarning.setText("Username is already in use");
+                                        tvWarning.setVisibility(View.VISIBLE);
+                                        //Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 else {
                                     if (child.child("email").getValue(String.class).equals(email)) { //check if email already exists
                                         if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                            Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
+                                            tvWarning.setText("Email is already in use");
+                                            tvWarning.setVisibility(View.VISIBLE);
+                                            //Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     else { //valid credentials -> insert to database

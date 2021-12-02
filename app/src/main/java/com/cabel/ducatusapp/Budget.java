@@ -47,6 +47,10 @@ public class Budget extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
+        if(SharedPrefs.getCurrentUserId(Budget.this) == null) {
+            startActivity(new Intent(Budget.this, LogIn.class));
+        }
+
         //Display the current month and year
         TextView txtDate = (TextView) findViewById(R.id.txtDate);
         Calendar cal = Calendar.getInstance();
@@ -65,6 +69,7 @@ public class Budget extends AppCompatActivity {
                 for(DataSnapshot child: snapshot.getChildren()) {
                     if (snapshot.exists()) {
                         if(child.child("userID").getValue().toString().equals(uid)) {
+                            String itemID = child.child("itemID").getValue().toString();
                             String category = child.child("category").getValue().toString();
                             float budget = Float.parseFloat(child.child("budget").getValue().toString());
                             float activity = Float.parseFloat(child.child("activity").getValue().toString());
@@ -78,7 +83,7 @@ public class Budget extends AppCompatActivity {
                             );
                             cardParam.setMargins(0, (int) convertDpToPixel(10), 0, 0);
                             cardView.setLayoutParams(cardParam);
-                            cardView.setId(R.id.cardview);
+                            cardView.setId(Integer.parseInt(itemID));
                             layoutItems.addView(cardView);
 
                             RelativeLayout rl = new RelativeLayout(Budget.this);
@@ -89,10 +94,6 @@ public class Budget extends AppCompatActivity {
                             rl.setLayoutParams(rlParam);
                             rl.setId(R.id.rl);
                             cardView.addView(rl);
-
-                            /*LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                            ViewGroup viewGroup = findViewById(R.id.cardview);
-                            inflater.inflate(R.id.rl, viewGroup);*/
 
                             TextView tvcategory = new TextView(Budget.this);
                             RelativeLayout.LayoutParams categoryParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

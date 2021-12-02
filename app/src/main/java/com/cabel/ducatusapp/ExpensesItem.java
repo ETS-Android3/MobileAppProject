@@ -24,6 +24,10 @@ public class ExpensesItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses_item);
 
+        if(SharedPrefs.getCurrentUserId(ExpensesItem.this) == null) {
+            startActivity(new Intent(ExpensesItem.this, LogIn.class));
+        }
+
         EditText etvCategory = findViewById(R.id.etvCategory);
         EditText etvAmount = findViewById(R.id.etvAmount);
         EditText etvDate = findViewById(R.id.etvDate);

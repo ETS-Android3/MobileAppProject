@@ -56,6 +56,10 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        if(SharedPrefs.getCurrentUserId(UserProfile.this) == null) {
+            startActivity(new Intent(UserProfile.this, LogIn.class));
+        }
+
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 

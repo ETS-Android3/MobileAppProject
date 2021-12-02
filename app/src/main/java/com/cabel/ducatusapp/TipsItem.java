@@ -26,6 +26,10 @@ public class TipsItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips_item);
 
+        if(SharedPrefs.getCurrentUserId(TipsItem.this) == null) {
+            startActivity(new Intent(TipsItem.this, LogIn.class));
+        }
+
         TextView tipsTitle = findViewById(R.id.tipsTitle);
         TextView tipsContent = findViewById(R.id.tipsContent);
         ImageView imgTips = findViewById(R.id.imgTips);

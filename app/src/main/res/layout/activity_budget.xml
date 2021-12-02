@@ -61,9 +61,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="25dp"
             android:fontFamily="@font/quicksand"
-            android:text="October 2021"
+            android:text="Month/Yr"
             android:textColor="?attr/titleSecondaryColor"
-            android:textSize="20sp" />/>
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="328dp"
@@ -196,7 +196,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="5dp"
             app:cardElevation="6dp">
 

@@ -58,6 +58,7 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        TextView tvWarning = findViewById(R.id.tvWarning);
         EditText etvUsername = findViewById(R.id.etvUserReg);
         EditText etvPassword = findViewById(R.id.etvPassReg);
         ImageButton showPass = findViewById(R.id.imgPassVisibility);
@@ -97,7 +98,7 @@ public class LogIn extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_SHORT).show();
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
                 Query query = databaseReference.orderByKey();
@@ -106,7 +107,7 @@ public class LogIn extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child: snapshot.getChildren()) {
                             try {
-                                Thread.sleep(3000);
+                                Thread.sleep(0);
                                 if (child.child("username").getValue(String.class).equals(username)) {
                                     userKey = true; //set user as valid
                                     SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
@@ -134,13 +135,17 @@ public class LogIn extends AppCompatActivity {
                                     }
                                     else {
                                         if (passwordKey.equals(false)) { //check validity of password to avoid late data retrieval
-                                            Toast.makeText(getApplicationContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
+                                            tvWarning.setText("Incorrect password");
+                                            tvWarning.setVisibility(View.VISIBLE);
+                                            //Toast.makeText(getApplicationContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
                                 else {
                                     if (userKey.equals(false)) { //check validity of user to avoid late data retrieval
-                                        Toast.makeText(getApplicationContext(), "User does not exist", Toast.LENGTH_SHORT).show();
+                                        tvWarning.setText("User does not exist");
+                                        tvWarning.setVisibility(View.VISIBLE);
+                                        //Toast.makeText(getApplicationContext(), "User does not exist", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }

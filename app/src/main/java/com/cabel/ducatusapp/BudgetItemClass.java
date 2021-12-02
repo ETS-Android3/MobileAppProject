@@ -3,9 +3,9 @@ package com.cabel.ducatusapp;
 public class BudgetItemClass {
     private int itemID;
     private String category;
-    private int budget;
-    private int activity;
-    private int available;
+    private float budget;
+    private float activity;
+    private float available;
     private String description  ;
     private int userID;
 
@@ -13,7 +13,7 @@ public class BudgetItemClass {
 
     }
 
-    public BudgetItemClass(int itemID, String category, int budget, int activity, int available, String description, int userID) {
+    public BudgetItemClass(int itemID, String category, float budget, float activity, float available, String description, int userID) {
         this.itemID = itemID;
         this.category = category;
         this.budget = budget;
@@ -39,27 +39,27 @@ public class BudgetItemClass {
         this.category = category;
     }
 
-    public int getBudget() {
+    public float getBudget() {
         return budget;
     }
 
-    public void setBudget(int budget) {
+    public void setBudget(float budget) {
         this.budget = budget;
     }
 
-    public int getActivity() {
+    public float getActivity() {
         return activity;
     }
 
-    public void setActivity(int activity) {
+    public void setActivity(float activity) {
         this.activity = activity;
     }
 
-    public int getAvailable() {
+    public float getAvailable() {
         return available;
     }
 
-    public void setAvailable(int available) {
+    public void setAvailable(float available) {
         this.available = available;
     }
 

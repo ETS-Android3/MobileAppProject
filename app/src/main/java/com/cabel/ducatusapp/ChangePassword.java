@@ -50,6 +50,10 @@ public class ChangePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        if(SharedPrefs.getCurrentUserId(ChangePassword.this) == null) {
+            startActivity(new Intent(ChangePassword.this, LogIn.class));
+        }
+
         EditText etvCurrentPass = findViewById(R.id.etvCurrentPass);
         EditText etvNewPass = findViewById(R.id.etvNewPass);
         EditText etvConfNewPass = findViewById(R.id.etvConfNewPass);
