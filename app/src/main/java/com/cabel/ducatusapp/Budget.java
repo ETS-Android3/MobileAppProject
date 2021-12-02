@@ -2,13 +2,21 @@ package com.cabel.ducatusapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 public class Budget extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
@@ -36,6 +46,7 @@ public class Budget extends AppCompatActivity {
         setContentView(R.layout.activity_budget);
 
         LinearLayout layoutItems = findViewById(R.id.layoutItems);
+        String uid = SharedPrefs.getCurrentUserId(Budget.this);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget");
         Query queryAll = databaseReference.orderByKey();
@@ -43,24 +54,83 @@ public class Budget extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot child: snapshot.getChildren()) {
-                    String uid = SharedPrefs.getCurrentUserId(Budget.this);
-                    if(snapshot.exists()) {
+                    if (snapshot.exists()) {
                         if(child.child("userID").getValue().toString().equals(uid)) {
-                            String itemID = child.child("itemID").getValue().toString();
-                            TextView textView = new TextView(Budget.this);
-                            textView.setText(itemID);
-                            textView.setBackgroundColor(Color.parseColor("#FF0000"));
-                            textView.setTextColor(Color.parseColor("#00FF00"));
+                            String category = child.child("category").getValue().toString();
+                            float budget = Float.parseFloat(child.child("budget").getValue().toString());
+                            float activity = Float.parseFloat(child.child("activity").getValue().toString());
+                            float available = Float.parseFloat(child.child("available").getValue().toString());
+                            String description = child.child("description").getValue().toString();
 
-                            layoutItems.addView(textView);
-                            Toast.makeText(getApplicationContext(), itemID, Toast.LENGTH_SHORT).show();
-                        }
-                        else  {
-                            break;
+                            CardView cardView = new CardView(Budget.this);
+                            CardView.LayoutParams cardParam = new CardView.LayoutParams(
+                                    925,
+                                    (int)(convertDpToPixel(50))//144//64 * 2.25
+                            );
+                            cardParam.setMargins(0, (int) convertDpToPixel(10), 0, 0);
+                            cardView.setLayoutParams(cardParam);
+                            cardView.setId(R.id.cardview);
+                            layoutItems.addView(cardView);
+
+                            RelativeLayout rl = new RelativeLayout(Budget.this);
+                            RelativeLayout.LayoutParams rlParam = new RelativeLayout.LayoutParams(
+                                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                                    RelativeLayout.LayoutParams.MATCH_PARENT
+                            );
+                            rl.setLayoutParams(rlParam);
+                            rl.setId(R.id.rl);
+                            cardView.addView(rl);
+
+                            /*LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            ViewGroup viewGroup = findViewById(R.id.cardview);
+                            inflater.inflate(R.id.rl, viewGroup);*/
+
+                            TextView tvcategory = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams categoryParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            categoryParam.setMargins((int) convertDpToPixel(10), (int) convertDpToPixel(5), 0, 0);
+                            tvcategory.setLayoutParams(categoryParam);
+                            tvcategory.setText(category);
+                            tvcategory.setTextColor(Color.parseColor("#5E5B5B"));
+                            rl.addView(tvcategory);
+
+                            TextView tvbudget = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams budgetParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
+                            budgetParam.setMargins((int) convertDpToPixel(110), (int) convertDpToPixel(5), 0, 0);
+                            tvbudget.setLayoutParams(budgetParam);
+                            tvbudget.setText(String.format("%.2f", budget));
+                            tvbudget.setTextColor(Color.parseColor("#5E5B5B"));
+                            tvbudget.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                            rl.addView(tvbudget);
+
+                            TextView tvactivity = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams activityParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
+                            activityParam.setMargins((int) convertDpToPixel(183), (int) convertDpToPixel(5), 0, 0);
+                            tvactivity.setLayoutParams(activityParam);
+                            tvactivity.setText(String.format("%.2f", activity));
+                            tvactivity.setTextColor(Color.parseColor("#5E5B5B"));
+                            tvactivity.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                            rl.addView(tvactivity);
+
+                            TextView tvavailable = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams availableParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
+                            availableParam.setMargins((int) convertDpToPixel(269), (int) convertDpToPixel(5), 0, 0);
+                            tvavailable.setLayoutParams(availableParam);
+                            tvavailable.setText(String.format("%.2f", available));
+                            tvavailable.setTextColor(Color.parseColor("#5E5B5B"));
+                            tvavailable.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                            rl.addView(tvavailable);
+
+                            TextView tvdescription = new TextView(Budget.this);
+                            RelativeLayout.LayoutParams descriptionParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            descriptionParam.setMargins((int) convertDpToPixel(10), (int) convertDpToPixel(25), 0, 0);
+                            tvdescription.setLayoutParams(descriptionParam);
+                            tvdescription.setText(description);
+                            tvdescription.setTextColor(Color.parseColor("#5E5B5B"));
+                            rl.addView(tvdescription);
                         }
                     }
                     else {
-                        break;
+
                     }
                 }
             }
@@ -110,5 +180,14 @@ public class Budget extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public float convertDpToPixel(float dp){
+        Context context = Budget.this;
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+    public static float convertPixelsToDp(float px, Context context){
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 }

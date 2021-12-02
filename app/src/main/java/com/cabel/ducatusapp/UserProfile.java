@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,15 +31,17 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+
 import java.util.UUID;
 
 public class UserProfile extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
+    private String uid;
     private ImageView imgProfilePic;
-    private TextView txtUpdatePic;
-    public Uri imageUri;
+    private Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    private StorageReference storageURLRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,31 @@ public class UserProfile extends AppCompatActivity {
         storageReference = storage.getReference();
 
         imgProfilePic = findViewById(R.id.imgProfilePic);
-        txtUpdatePic = findViewById(R.id.txtUpdatePic);
+        TextView txtUpdatePic = findViewById(R.id.txtUpdatePic);
+        EditText etvUsernameProfile = findViewById(R.id.etvUsernameProfile);
+        EditText etvEmailProfile = findViewById(R.id.etvEmailProfile);
+
+        etvUsernameProfile.setText(SharedPrefs.getCurrentUser(UserProfile.this));
+        uid = SharedPrefs.getCurrentUserId(UserProfile.this);
+
+        DatabaseReference imageReference = FirebaseDatabase.getInstance().getReference().child("images/" + uid);
+        imageReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String urlReference = snapshot.child("imageurl").getValue(String.class);
+                String url = "gs://ducatusfirebase.appspot.com/images/1c173ed3-7aa0-467f-8e24-90c0f0031db1";
+                //storageURLRef = storageURLRef.child("images/" + urlReference);
+
+                Glide.with(UserProfile.this).load(url).into(imgProfilePic);
+                //Toast.makeText(getApplicationContext(), storageURLRef, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         txtUpdatePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,13 +92,6 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-
-
-        EditText etvUsernameProfile = findViewById(R.id.etvUsernameProfile);
-        EditText etvEmailProfile = findViewById(R.id.etvEmailProfile);
-
-        etvUsernameProfile.setText(SharedPrefs.getCurrentUser(UserProfile.this));
-        String uid = SharedPrefs.getCurrentUserId(UserProfile.this);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users/" + uid);
         Query query = databaseReference.orderByKey();
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -92,8 +112,7 @@ public class UserProfile extends AppCompatActivity {
         btnBackUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserProfile.this, Settings.class);
-                startActivity(intent);
+                startActivity(new Intent(UserProfile.this, Settings.class));
             }
         });
     }
@@ -128,6 +147,26 @@ public class UserProfile extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        SharedPrefs.setCurrentUserImage(UserProfile.this, randomKey);
+                        DatabaseReference imageReference = FirebaseDatabase.getInstance().getReference().child("images");
+                        Query queryAll = imageReference.orderByKey();
+                        queryAll.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.child(uid).exists()) {
+                                    imageReference.child(uid + "/imageurl").setValue(randomKey);
+                                }
+                                else {
+                                    ImageClass image = new ImageClass(randomKey, uid);
+                                    imageReference.child(uid).setValue(image);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                         pd.dismiss();
                         Snackbar.make(findViewById(android.R.id.content),"Image Uploaded",Snackbar.LENGTH_LONG).show();
                     }
@@ -146,6 +185,7 @@ public class UserProfile extends AppCompatActivity {
                         pd.setMessage("Progress: " + (int) progressPercent + "%");
                     }
                 });
+
 
     }
 }
