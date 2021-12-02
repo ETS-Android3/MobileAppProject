@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Expenses extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
@@ -22,6 +26,13 @@ public class Expenses extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);
+
+        //Display the current month and year
+        TextView txtDate = (TextView) findViewById(R.id.txtDate);
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+        String m = month_date.format(cal.getTime());
+        txtDate.setText(m);
 
         //Home icon intent
         Button btnHome = findViewById(R.id.btnHome);

@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Budget extends AppCompatActivity {
@@ -44,6 +46,13 @@ public class Budget extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
+
+        //Display the current month and year
+        TextView txtDate = (TextView) findViewById(R.id.txtDate);
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
+        String m = month_date.format(cal.getTime());
+        txtDate.setText(m);
 
         LinearLayout layoutItems = findViewById(R.id.layoutItems);
         String uid = SharedPrefs.getCurrentUserId(Budget.this);
