@@ -13,7 +13,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="207dp"
+        tools:layout_editor_absoluteX="-3dp">
 
         <ImageView
             android:id="@+id/imageView8"
@@ -46,17 +47,20 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="127dp"
-            android:layout_height="127dp"
-            android:layout_below="@+id/textView23"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfilePic"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="105dp"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="143dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="146dp"
+            android:layout_marginBottom="-3dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -69,7 +73,7 @@
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/txtUpdatePic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
