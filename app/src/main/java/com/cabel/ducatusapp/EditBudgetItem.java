@@ -1,11 +1,14 @@
 package com.cabel.ducatusapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditBudgetItem extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
-    private int itemID = 0;
+    private String itemID = "";
     private int userID;
     private String category = "";
     private String description = "";
@@ -55,6 +58,18 @@ public class EditBudgetItem extends AppCompatActivity {
         EditText etvActivity = findViewById(R.id.etvActivity);
         EditText etvAvailable = findViewById(R.id.etvAvailable);
 
+        Intent i = getIntent();
+        itemID = i.getStringExtra("itemID");
+        category = i.getStringExtra("category");
+        description = i.getStringExtra("description");
+        budget = i.getFloatExtra("budget", 0);
+        activity = i.getFloatExtra("activity", 0);
+        available = i.getFloatExtra("available", 0);
+
+        etvCategory.setText(category);
+        etvDescription.setText(description);
+        etvBudget.setText(String.format("%.2f", available));
+
         etvActivity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -72,12 +87,12 @@ public class EditBudgetItem extends AppCompatActivity {
                 String activity = etvActivity.getText().toString();
 
                 if(!TextUtils.isEmpty(activity)) {
-                    if(Integer.parseInt(activity) > Integer.parseInt(budget)) {
+                    if(Float.parseFloat(activity) > Float.parseFloat(budget)) {
                         etvAvailable.setText(null);
                         tvWarning.setVisibility(View.VISIBLE);
                     }
                     else {
-                        available = Integer.parseInt(budget) - Integer.parseInt(activity);
+                        available = Float.parseFloat(budget) - Float.parseFloat(activity);
                         etvAvailable.setText(String.valueOf(available));
                         tvWarning.setVisibility(View.INVISIBLE);
                     }
@@ -92,34 +107,6 @@ public class EditBudgetItem extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget");
-                Query queryAll = databaseReference.orderByKey();
-                queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot child: snapshot.getChildren()) {
-                            if(child.child("itemID").getValue().toString().equals(itemID)) {
-                                category = child.child("category").getValue().toString();
-                                description = child.child("description").getValue().toString();
-                                budget = Float.parseFloat(child.child("budget").getValue().toString());
-                                activity = Float.parseFloat(child.child("activity").getValue().toString());
-                                available = Float.parseFloat(child.child("available").getValue().toString());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-                etvCategory.setText(category);
-                etvDescription.setText(description);
-                etvBudget.setText(String.format("%.2f", budget));
-                etvActivity.setText(String.format("%.2f", activity));
-                etvAvailable.setText(String.format("%.2f", available));
-
                 available = budget - activity;
 
                 //Check if fields are empty
@@ -149,7 +136,87 @@ public class EditBudgetItem extends AppCompatActivity {
                     return;
                 }
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditBudgetItem.this);
+                builder.setCancelable(true);
+                builder.setTitle("Edit Item");
+                builder.setMessage("Save details?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget/" + itemID);
+                                Query queryItem = databaseReference.orderByKey();
+                                queryItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        float dbActivity = Float.parseFloat(snapshot.child("activity").getValue().toString());
+                                        float dbAvailable = Float.parseFloat(snapshot.child("available").getValue().toString());
 
+                                        activity += dbActivity;
+                                        available -= dbAvailable;
+
+                                        databaseReference.child("/category").setValue(category);
+                                        databaseReference.child("/description").setValue(description);
+                                        databaseReference.child("/activity").setValue(activity);
+                                        databaseReference.child("/available").setValue(available);
+
+                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        System.out.println("Error: " + error);
+                                    }
+                                });
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        Button btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditBudgetItem.this);
+                builder.setCancelable(true);
+                builder.setTitle("Delete Item");
+                builder.setMessage("Delete this item?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget/" + itemID);
+                                Query queryItem = databaseReference.orderByKey();
+                                queryItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        snapshot.getRef().removeValue();
+                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        System.out.println("Error: " + error);
+                                    }
+                                });
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
