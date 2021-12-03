@@ -57,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="177dp"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/tips1" />
 
