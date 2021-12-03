@@ -107,6 +107,10 @@ public class EditBudgetItem extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                category = etvCategory.getText().toString();
+                description = etvDescription.getText().toString();
+                activity = Float.parseFloat(etvActivity.getText().toString());
+
                 available = budget - activity;
 
                 //Check if fields are empty

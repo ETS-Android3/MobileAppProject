@@ -129,7 +129,7 @@ public class Budget extends AppCompatActivity {
                             RelativeLayout.LayoutParams budgetParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
                             budgetParam.setMargins((int) convertDpToPixel(110), (int) convertDpToPixel(5), 0, 0);
                             tvbudget.setLayoutParams(budgetParam);
-                            tvbudget.setText(String.format("%.2f", budget));
+                            tvbudget.setText(String.format("₱%.2f", budget));
                             tvbudget.setTextColor(Color.parseColor("#5E5B5B"));
                             tvbudget.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                             rl.addView(tvbudget);
@@ -138,7 +138,7 @@ public class Budget extends AppCompatActivity {
                             RelativeLayout.LayoutParams activityParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
                             activityParam.setMargins((int) convertDpToPixel(183), (int) convertDpToPixel(5), 0, 0);
                             tvactivity.setLayoutParams(activityParam);
-                            tvactivity.setText(String.format("%.2f", activity));
+                            tvactivity.setText(String.format("₱%.2f", activity));
                             tvactivity.setTextColor(Color.parseColor("#5E5B5B"));
                             tvactivity.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                             rl.addView(tvactivity);
@@ -147,7 +147,7 @@ public class Budget extends AppCompatActivity {
                             RelativeLayout.LayoutParams availableParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
                             availableParam.setMargins((int) convertDpToPixel(269), (int) convertDpToPixel(5), 0, 0);
                             tvavailable.setLayoutParams(availableParam);
-                            tvavailable.setText(String.format("%.2f", available));
+                            tvavailable.setText(String.format("₱%.2f", available));
                             tvavailable.setTextColor(Color.parseColor("#5E5B5B"));
                             tvavailable.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                             rl.addView(tvavailable);
