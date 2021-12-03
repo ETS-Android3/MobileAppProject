@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 public class EditBudgetItem extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private String itemID = "";
-    private int userID;
     private String category = "";
     private String description = "";
     private float budget = 0;
@@ -221,6 +220,14 @@ public class EditBudgetItem extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+
+        Button btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Budget.class));
             }
         });
     }

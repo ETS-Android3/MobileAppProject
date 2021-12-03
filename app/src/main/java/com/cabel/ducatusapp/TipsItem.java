@@ -37,7 +37,7 @@ public class TipsItem extends AppCompatActivity {
         Intent i = getIntent();
 
         tipsTitle.setText(i.getStringExtra("title"));
-        tipsContent.setText("     " + i.getStringExtra("message"));
+        tipsContent.setText("          " + i.getStringExtra("message"));
         int image_link = i.getIntExtra("image_url",0);
         imgTips.setImageResource(image_link);
 
