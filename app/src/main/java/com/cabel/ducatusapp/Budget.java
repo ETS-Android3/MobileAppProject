@@ -67,14 +67,14 @@ public class Budget extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot child: snapshot.getChildren()) {
-                    if (snapshot.exists()) {
-                        if(child.child("userID").getValue().toString().equals(uid)) {
+                    if (snapshot.exists()) { //check if firebase is empty
+                        if(child.child("userID").getValue().toString().equals(uid)) { //retrieve all items related to current user
                             String itemID = child.child("itemID").getValue().toString();
                             String category = child.child("category").getValue().toString();
+                            String description = child.child("description").getValue().toString();
                             float budget = Float.parseFloat(child.child("budget").getValue().toString());
                             float activity = Float.parseFloat(child.child("activity").getValue().toString());
                             float available = Float.parseFloat(child.child("available").getValue().toString());
-                            String description = child.child("description").getValue().toString();
 
                             CardView cardView = new CardView(Budget.this);
                             CardView.LayoutParams cardParam = new CardView.LayoutParams(
@@ -84,6 +84,28 @@ public class Budget extends AppCompatActivity {
                             cardParam.setMargins(0, (int) convertDpToPixel(10), 0, 0);
                             cardView.setLayoutParams(cardParam);
                             cardView.setId(Integer.parseInt(itemID));
+                            cardView.setOnClickListener(new View.OnClickListener() { //set on click listener for each cardview
+                                @Override
+                                public void onClick(View view) {
+                                    String id = String.valueOf(view.getId());
+                                    if(child.child("itemID").getValue().toString().equals(id)) {
+                                        Intent intent = new Intent(getApplicationContext(), EditBudgetItem.class);
+                                        String dbCategory = child.child("category").getValue().toString();
+                                        String dbDescription = child.child("description").getValue().toString();
+                                        float dbBudget = Float.parseFloat(child.child("budget").getValue().toString());
+                                        float dbActivity = Float.parseFloat(child.child("activity").getValue().toString());
+                                        float dbAvailable = Float.parseFloat(child.child("available").getValue().toString());
+
+                                        intent.putExtra("itemID", id);
+                                        intent.putExtra("category", dbCategory);
+                                        intent.putExtra("description", dbDescription);
+                                        intent.putExtra("budget", dbBudget);
+                                        intent.putExtra("activity", dbActivity);
+                                        intent.putExtra("available", dbAvailable);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
                             layoutItems.addView(cardView);
 
                             RelativeLayout rl = new RelativeLayout(Budget.this);
@@ -137,10 +159,8 @@ public class Budget extends AppCompatActivity {
                             tvdescription.setText(description);
                             tvdescription.setTextColor(Color.parseColor("#5E5B5B"));
                             rl.addView(tvdescription);
-                        }
-                    }
-                    else {
 
+                        }
                     }
                 }
             }
@@ -150,6 +170,7 @@ public class Budget extends AppCompatActivity {
 
             }
         });
+
 
         //Home icon intent
         Button btnHome = findViewById(R.id.btnHome);
