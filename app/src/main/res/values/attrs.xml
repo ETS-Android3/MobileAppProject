@@ -23,6 +23,4 @@
     <attr name="loginImgBG" format="reference"/>
     <attr name="textboxColor" format="reference"/>
     <attr name="warningTextColor" format="color"/>
-    <attr name="resetPassBG" format="color"/>
-    <attr name="resetGradient" format="reference"/>
 </resources>
