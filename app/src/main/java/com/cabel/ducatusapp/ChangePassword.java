@@ -69,12 +69,12 @@ public class ChangePassword extends AppCompatActivity {
                 if(!passVisibility1) {
                     passVisibility1 = true;
                     etvCurrentPass.setTransformationMethod(new PasswordTransformationMethod());
-                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                    showPass1.setImageResource(R.drawable.ic_visibility_off);
                 }
                 else {
                     passVisibility1 = false;
                     etvCurrentPass.setTransformationMethod(null);
-                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_24);
+                    showPass1.setImageResource(R.drawable.ic_visibility);
                 }
             }
         });
@@ -85,12 +85,12 @@ public class ChangePassword extends AppCompatActivity {
                 if(!passVisibility2) {
                     passVisibility2 = true;
                     etvNewPass.setTransformationMethod(new PasswordTransformationMethod());
-                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                    showPass2.setImageResource(R.drawable.ic_visibility_off);
                 }
                 else {
                     passVisibility2 = false;
                     etvNewPass.setTransformationMethod(null);
-                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_24);
+                    showPass2.setImageResource(R.drawable.ic_visibility);
                 }
             }
         });
@@ -100,12 +100,12 @@ public class ChangePassword extends AppCompatActivity {
                 if(!passVisibility3) {
                     passVisibility3 = true;
                     etvConfNewPass.setTransformationMethod(new PasswordTransformationMethod());
-                    showPass3.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                    showPass3.setImageResource(R.drawable.ic_visibility_off);
                 }
                 else {
                     passVisibility3 = false;
                     etvConfNewPass.setTransformationMethod(null);
-                    showPass3.setImageResource(R.drawable.ic_baseline_visibility_24);
+                    showPass3.setImageResource(R.drawable.ic_visibility);
                 }
             }
         });

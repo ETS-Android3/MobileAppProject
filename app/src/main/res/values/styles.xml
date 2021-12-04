@@ -14,7 +14,7 @@
         <item name="primaryTextColor.70alpha">#B3254441</item>
         <item name="primaryTextColor.90alpha">#E6254441</item>
         <item name="hintTextColor">#A5A2A2</item>
-        <item name="colorControlNormal">#726F6F</item>
+        <item name="colorControlNormal">#5E5B5B</item>
         <item name="btnColor">#7C9885</item>
         <item name="btnSecondaryColor">#033F63</item>
         <item name="greyTextColor">#8F9B9A</item>

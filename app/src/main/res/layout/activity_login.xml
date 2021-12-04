@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="@string/log_in"
+                    android:text="Login"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
@@ -79,11 +79,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:visibility="invisible"
                     android:fontFamily="@font/roboto"
                     android:text="TextView"
+                    android:textColor="?attr/warningTextColor"
                     android:textSize="16sp"
-                    android:textColor="?attr/warningTextColor" />
+                    android:visibility="invisible" />
 
                 <EditText
                     android:id="@+id/etvUserReg"
@@ -165,19 +165,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="170dp"
+                        android:layout_marginEnd="162dp"
                         android:text="Don't have an account?"
                         android:textAlignment="textEnd"
                         android:textColor="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/tvLogin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginStart="246dp"
-                        android:layout_marginEnd="19dp"
+                        android:layout_marginEnd="98dp"
                         android:text="@string/sign_up.small"
                         android:textColor="#6ED788" />
                 </RelativeLayout>
