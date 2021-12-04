@@ -23,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class BudgetItem extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private int itemID = 0;
@@ -95,6 +98,10 @@ public class BudgetItem extends AppCompatActivity {
                 float activity = Float.parseFloat(etvActivity.getText().toString());
                 String description = etvDescription.getText().toString();
 
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat month_date = new SimpleDateFormat("MM/dd/yyyy");
+                String date = month_date.format(cal.getTime());
+
                 available = budget - activity;
 
                 //Check if fields are empty
@@ -125,6 +132,7 @@ public class BudgetItem extends AppCompatActivity {
                 }
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget");
+                DatabaseReference expensesReference = FirebaseDatabase.getInstance().getReference().child("expenses");
                 //check last itemID
                 Query queryLast = databaseReference.orderByKey().limitToLast(1);
                 queryLast.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -168,8 +176,12 @@ public class BudgetItem extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         userID = Integer.parseInt(SharedPrefs.getCurrentUserId(BudgetItem.this));
-                                        BudgetItemClass budgetItem = new BudgetItemClass(itemID, category, budget, activity, available, description, userID);
+                                        BudgetItemClass budgetItem = new BudgetItemClass(itemID, category, description, budget, activity, available, date, userID);
                                         databaseReference.child(String.valueOf(itemID)).setValue(budgetItem);
+
+                                        ExpensesClass expensesClass = new ExpensesClass(itemID, category, description, activity, date, userID, itemID);
+                                        expensesReference.child(String.valueOf(itemID)).setValue(expensesClass);
+
                                         startActivity(new Intent(getApplicationContext(), Budget.class));
                                     }
 
