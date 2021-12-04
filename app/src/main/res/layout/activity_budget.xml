@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_tobebudgeted"
@@ -191,14 +192,15 @@
             android:background="?attr/colorControlNormal" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardd"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:visibility="gone"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="6dp">
+            app:cardElevation="0dp"
+            app:cardCornerRadius="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

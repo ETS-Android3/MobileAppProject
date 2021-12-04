@@ -58,6 +58,9 @@ public class Budget extends AppCompatActivity {
         String m = month_date.format(cal.getTime());
         txtDate.setText(m);
 
+        //CardView cardView = (CardView) findViewById(R.id.cardd);
+
+
         LinearLayout layoutItems = findViewById(R.id.layoutItems);
         String uid = SharedPrefs.getCurrentUserId(Budget.this);
 
@@ -77,6 +80,7 @@ public class Budget extends AppCompatActivity {
                             float available = Float.parseFloat(child.child("available").getValue().toString());
 
                             CardView cardView = new CardView(Budget.this);
+                            cardView.setCardElevation(0);
                             CardView.LayoutParams cardParam = new CardView.LayoutParams(
                                     925,
                                     (int)(convertDpToPixel(50))//144//64 * 2.25
