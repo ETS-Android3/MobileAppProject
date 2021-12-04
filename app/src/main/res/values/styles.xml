@@ -29,6 +29,7 @@
         <item name="loginImgBG">@drawable/loginbg3</item>
         <item name="textboxColor">@drawable/bg_textbox</item>
         <item name="warningTextColor">#E30000</item>
+        <item name="transparent">#00000000</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
