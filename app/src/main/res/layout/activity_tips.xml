@@ -48,7 +48,7 @@
                 android:background="@drawable/border_budget">
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/tipsTitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -79,7 +79,7 @@
                 android:background="@drawable/border_budget">
 
                 <TextView
-                    android:id="@+id/textView39"
+                    android:id="@+id/tipsTitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -110,7 +110,7 @@
                 android:background="@drawable/border_budget">
 
                 <TextView
-                    android:id="@+id/textView40"
+                    android:id="@+id/tipsTitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -141,7 +141,7 @@
                 android:background="@drawable/border_budget">
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/tipsTitle4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -172,7 +172,7 @@
                 android:background="@drawable/border_budget">
 
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/tipsTitle5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

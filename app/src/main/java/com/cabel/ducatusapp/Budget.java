@@ -38,7 +38,6 @@ public class Budget extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private LinearLayout layoutItems;
     private TextView txtDate;
-    private String m;
     private TextView tvTotalBudget;
     private TextView tvTotalActivity;
     private TextView tvTotalAvailable;
@@ -46,6 +45,10 @@ public class Budget extends AppCompatActivity {
     private float totalActivity = 0;
     private float totalAvailable = 0;
     private String uid = "";
+
+    Calendar cal = Calendar.getInstance();
+    SimpleDateFormat month = new SimpleDateFormat("MMMM");
+    String initialMonth = month.format(cal.getTime());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +69,9 @@ public class Budget extends AppCompatActivity {
 
         //Display the current month and year
         txtDate = findViewById(R.id.txtDate);
-        Calendar cal = Calendar.getInstance();
+        cal = Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM yyyy");
-        m = month_date.format(cal.getTime());
+        String m = month_date.format(cal.getTime());
 
         txtDate.setText(m);
 
@@ -268,10 +271,23 @@ public class Budget extends AppCompatActivity {
                                     }
                                 }
                                 else {
+
+                                    totalBudget = 0;
+                                    totalActivity = 0;
+                                    totalAvailable = 0;
+                                    tvTotalBudget.setText(String.format("₱%.2f", 0.00));
+                                    tvTotalActivity.setText(String.format("₱%.2f", 0.00));
+                                    tvTotalAvailable.setText(String.format("₱%.2f", 0.00));
                                     layoutItems.removeAllViews();
                                 }
                             }
                             else {
+                                totalBudget = 0;
+                                totalActivity = 0;
+                                totalAvailable = 0;
+                                tvTotalBudget.setText(String.format("₱%.2f", 0.00));
+                                tvTotalActivity.setText(String.format("₱%.2f", 0.00));
+                                tvTotalAvailable.setText(String.format("₱%.2f", 0.00));
                                 layoutItems.removeAllViews();
                             }
                         }
@@ -293,7 +309,11 @@ public class Budget extends AppCompatActivity {
                     public void onDateSet(int selectedMonth, int selectedYear) {
                         String newDate = getMonthFormat(selectedMonth) + " " + selectedYear;
                         txtDate.setText(newDate);
-                        displayItems(newDate);
+
+                        if(!getMonthFormat(selectedMonth).equals(initialMonth)) {
+                            initialMonth = "";
+                            displayItems(newDate);
+                        }
                     }
                 }, today.get(Calendar.YEAR), today.get(Calendar.MONTH));
 

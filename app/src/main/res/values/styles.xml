@@ -27,10 +27,10 @@
         <item name="blackTextColor">#000000</item>
         <item name="loginBG">#28666E</item>
         <item name="loginImgBG">@drawable/loginbg3</item>
-        <item name="textboxColor">@drawable/bg_textbox</item>
+        <item name="textboxColor">@drawable/bg_white_textbox</item>
         <item name="warningTextColor">#E30000</item>
         <item name="transparentBG">#00000000</item>
-        <item name="resetPassBG">#FFFFFF</item>
+        <item name="resetPassBG">#F9F3F3</item>
         <item name="resetGradient">@drawable/bg_resetpass</item>
 
     </style>
@@ -60,10 +60,10 @@
         <item name="blackTextColor">#F9F3F3</item>
         <item name="loginBG">#253044</item>
         <item name="loginImgBG">@drawable/logindm3</item>
-        <item name="textboxColor">@drawable/bg_textbox</item>
+        <item name="textboxColor">@drawable/bg_dark_textbox</item>
         <item name="warningTextColor">#E30000</item>
         <item name="transparentBG">#00000000</item>
-        <item name="resetPassBG">#383636</item>
+        <item name="resetPassBG">#303232</item>
         <item name="resetGradient">@drawable/bg_resetpass2</item>
     </style>
 

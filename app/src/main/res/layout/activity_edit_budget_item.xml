@@ -78,7 +78,7 @@
             android:fontFamily="@font/roboto"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColor="?attr/primaryTextColor"
+            android:textColor="?attr/secondaryTextColor"
             android:textSize="16sp" />
 
         <TextView
@@ -106,7 +106,7 @@
             android:fontFamily="@font/roboto"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:textColor="?attr/primaryTextColor"
+            android:textColor="?attr/secondaryTextColor"
             android:textSize="16sp" />
 
         <TextView
@@ -174,14 +174,14 @@
                 android:layout_below="@+id/textView35"
                 android:layout_marginTop="20dp"
                 android:background="?attr/textboxColor"
+                android:ems="10"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:focusedByDefault="false"
-                android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:padding="10dp"
-                android:textColor="?attr/primaryTextColor"
+                android:textColor="?attr/secondaryTextColor"
                 android:textSize="16sp" />
 
             <EditText
@@ -197,7 +197,7 @@
                 android:fontFamily="@font/roboto"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="?attr/primaryTextColor"
+                android:textColor="?attr/secondaryTextColor"
                 android:textSize="16sp" />
 
             <EditText
@@ -217,7 +217,7 @@
                 android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:padding="10dp"
-                android:textColor="?attr/primaryTextColor"
+                android:textColor="?attr/secondaryTextColor"
                 android:textSize="16sp" />
 
         </RelativeLayout>

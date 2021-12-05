@@ -31,8 +31,6 @@ public class LogIn extends AppCompatActivity {
     private static final String ALGORITHM = "AES";
     private static final String KEY = "1Hbfh667adfDEJ78";
     private SharedPrefs sharedPrefs;
-    private Boolean userKey = false;
-    private Boolean passwordKey = false;
     private Boolean passVisibility = false;
     private String cipherPass = "";
 
@@ -46,10 +44,6 @@ public class LogIn extends AppCompatActivity {
         else {
             setTheme(R.style.SettingsLight);
 
-        }
-
-        if(!SharedPrefs.getCurrentUser(LogIn.this).equals("")) {
-            startActivity(new Intent(LogIn.this, Home.class));
         }
 
         super.onCreate(savedInstanceState);
@@ -82,8 +76,8 @@ public class LogIn extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = etvUsername.getText().toString();
-                String password = etvPassword.getText().toString();
+                String username = etvUsername.getText().toString().trim();
+                String password = etvPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(getApplicationContext(), "Enter username", Toast.LENGTH_SHORT).show();
@@ -95,15 +89,71 @@ public class LogIn extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_LONG).show();
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
                 Query query = databaseReference.orderByKey();
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String[] dbUsers;
+                        String dbUser = "";
+                        String dbUsertype = "";
+                        String uid = "";
+                        int i = 0;
+
                         for (DataSnapshot child: snapshot.getChildren()) {
-                            try {
+                            if (snapshot.exists()) {
+                                dbUsers = new String[(int) snapshot.getChildrenCount()];
+                                dbUsers[i] = child.child("username").getValue().toString().toLowerCase(); //assign each username to array
+
+                                if(dbUsers[i].equals(username.toLowerCase())) {
+                                    dbUser = dbUsers[i];
+                                    dbUsertype = child.child("usertype").getValue().toString();
+                                    uid = child.child("userID").getValue().toString();
+                                    try {
+                                        cipherPass = decrypt(child.child("password").getValue(String.class));
+                                    }
+                                    catch(Exception e) {
+                                        System.out.println("Error: " + e);
+                                    }
+                                }
+                            }
+                            i++;
+                        }
+
+                        if(!(dbUser.equals(""))) {
+                            if(cipherPass.equals(password)) {
+                                if(dbUsertype.equals("admin")) {
+                                    SharedPrefs.setLoginStatus(LogIn.this, true);
+                                    SharedPrefs.setUsertype(LogIn.this, "admin");
+                                    SharedPrefs.setCurrentUser(LogIn.this, username);
+                                    SharedPrefs.setCurrentUserId(LogIn.this, uid);
+                                    startActivity(new Intent(getApplicationContext(), Home.class));
+                                    finish();
+                                }
+                                else {
+                                    SharedPrefs.setLoginStatus(LogIn.this, true);
+                                    SharedPrefs.setUsertype(LogIn.this, "user");
+                                    SharedPrefs.setCurrentUser(LogIn.this, username);
+                                    SharedPrefs.setCurrentUserId(LogIn.this, uid);
+                                    startActivity(new Intent(getApplicationContext(), Home.class));
+                                    finish();
+                                }
+                            }
+                            else {
+                                tvWarning.setText("Incorrect password");
+                                tvWarning.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        else {
+                            tvWarning.setText("User does not exist");
+                            tvWarning.setVisibility(View.VISIBLE);
+                        }
+
+                        /*for (DataSnapshot child: snapshot.getChildren()) {
+
+                            /*try {
                                 Thread.sleep(4000);
                                 if (child.child("username").getValue(String.class).equals(username)) {
                                     userKey = true; //set user as valid
@@ -152,7 +202,7 @@ public class LogIn extends AppCompatActivity {
                                 System.out.println("Error: " + e);
                             }
 
-                        }
+                        }*/
                     }
 
                     @Override

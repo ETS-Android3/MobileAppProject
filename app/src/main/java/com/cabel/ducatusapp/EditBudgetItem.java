@@ -162,8 +162,27 @@ public class EditBudgetItem extends AppCompatActivity {
                                         databaseReference.child("/description").setValue(description);
                                         databaseReference.child("/activity").setValue(activity);
                                         databaseReference.child("/available").setValue(available);
+                                    }
 
-                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        System.out.println("Error: " + error);
+                                    }
+
+                                });
+                                DatabaseReference expensesReference = FirebaseDatabase.getInstance().getReference().child("expenses");
+                                Query expensesItem = expensesReference.orderByKey();
+                                expensesItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for(DataSnapshot child: snapshot.getChildren()) {
+                                            if(child.child("itemID").getValue().toString().equals(itemID)) {
+                                                String expenseID = child.child("expenseID").getValue().toString();
+                                                expensesReference.child(expenseID + "/category").setValue(category);
+                                                expensesReference.child(expenseID + "/description").setValue(description);
+                                                expensesReference.child(expenseID + "/amount").setValue(activity);
+                                            }
+                                        }
                                     }
 
                                     @Override
@@ -171,6 +190,7 @@ public class EditBudgetItem extends AppCompatActivity {
                                         System.out.println("Error: " + error);
                                     }
                                 });
+                                startActivity(new Intent(EditBudgetItem.this, Budget.class));
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -202,7 +222,6 @@ public class EditBudgetItem extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         snapshot.getRef().removeValue();
-                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
                                     }
 
                                     @Override
@@ -210,6 +229,26 @@ public class EditBudgetItem extends AppCompatActivity {
                                         System.out.println("Error: " + error);
                                     }
                                 });
+
+                                DatabaseReference expensesReference = FirebaseDatabase.getInstance().getReference().child("expenses");
+                                Query expensesItem = expensesReference.orderByKey();
+                                expensesItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for(DataSnapshot child: snapshot.getChildren()) {
+                                            if(child.child("itemID").getValue().toString().equals(itemID)) {
+                                                snapshot.getRef().removeValue();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        System.out.println("Error: " + error);
+                                    }
+                                });
+
+                                startActivity(new Intent(EditBudgetItem.this, Budget.class));
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
