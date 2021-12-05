@@ -5,12 +5,21 @@
       <map>
         <entry key="..\:/3UST 1st sem/app/src/main/res/drawable/bg_button_cancel.xml" value="0.2703125" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/drawable/bg_button_login.xml" value="0.2703125" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/drawable/bg_textbox.xml" value="0.17685185185185184" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/drawable/bg_tobebudgeted.xml" value="0.17685185185185184" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/drawable/ic_account.xml" value="0.2703125" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_budget.xml" value="0.264" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_budget_item.xml" value="0.25416666666666665" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_change_password.xml" value="0.25025641025641027" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_expenses.xml" value="0.25416666666666665" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_signup.xml" value="0.4" />
         <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_splashscreen.xml" value="0.2" />
-        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_user_profile.xml" value="0.264" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_tips.xml" value="0.264" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_tips_item.xml" value="0.264" />
+        <entry key="..\:/3UST 1st sem/app/src/main/res/layout/activity_user_profile.xml" value="0.2" />
         <entry key="..\:/Android Studio Projects/MobileAppProject/app/src/main/res/drawable/bg_border_white.xml" value="0.2703125" />
         <entry key="..\:/Android Studio Projects/MobileAppProject/app/src/main/res/drawable/bg_button_login.xml" value="0.2703125" />
         <entry key="..\:/Android Studio Projects/MobileAppProject/app/src/main/res/drawable/bg_textbox_login.xml" value="0.2703125" />

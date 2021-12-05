@@ -200,17 +200,17 @@ public class Expenses extends AppCompatActivity {
 
                                     if(sharedPrefs.loadDarkModeTheme()) {
                                         cardView.setCardBackgroundColor(Color.parseColor("#212121"));
-                                        tvcategory.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvdescription.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvamount.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvdate.setTextColor(Color.parseColor("#A4DEBE"));
+                                        tvcategory.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvdescription.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvamount.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvdate.setTextColor(Color.parseColor("#F9F3F3"));
                                     }
                                     else {
                                         cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
-                                        tvcategory.setTextColor(Color.parseColor("#4C6663"));
-                                        tvdescription.setTextColor(Color.parseColor("#4C6663"));
-                                        tvamount.setTextColor(Color.parseColor("#4C6663"));
-                                        tvdate.setTextColor(Color.parseColor("#4C6663"));
+                                        tvcategory.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvdescription.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvamount.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvdate.setTextColor(Color.parseColor("#5E5B5B"));
                                     }
                                 }
                                 else {

@@ -12,15 +12,15 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="207dp"
+        android:layout_width="414dp"
+        android:layout_height="232dp"
         tools:layout_editor_absoluteX="-3dp">
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            app:srcCompat="@drawable/semicirclesmall" />
+            android:layout_height="149dp"
+            app:srcCompat="?attr/resetGradient" />
 
         <Button
             android:id="@+id/btnBackUserProfile"
@@ -48,19 +48,32 @@
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfilePic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/imgProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="92dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="69dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/ic_baseline_account_circle_24"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginStart="169dp"
+            android:layout_marginTop="111dp"
+            android:layout_marginEnd="169dp"
+            android:layout_marginBottom="29dp"
+            android:background="#254441" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfilePic"
+            android:layout_width="wrap_content"
+            android:layout_height="148dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="82dp"
+            android:layout_marginEnd="131dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/ic_account" />
 
     </RelativeLayout>
 
@@ -78,8 +91,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/roboto"
+            android:paddingStart="10dp"
             android:text="Username"
             android:textColor="?attr/primaryTextColor.90alpha"
             android:textSize="20sp"
@@ -90,7 +104,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -100,7 +114,7 @@
             android:paddingStart="10dp"
             android:text="John Doe"
             android:textColor="?attr/darkGreenTextColor"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView18"
@@ -109,6 +123,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:fontFamily="@font/roboto"
+            android:paddingStart="10dp"
             android:text="Email"
             android:textColor="?attr/primaryTextColor.90alpha"
             android:textSize="20sp"
@@ -119,7 +134,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -129,7 +144,7 @@
             android:paddingStart="10dp"
             android:text="johndoe@gmail.com"
             android:textColor="?attr/darkGreenTextColor"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnSave"

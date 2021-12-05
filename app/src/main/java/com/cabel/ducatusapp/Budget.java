@@ -252,19 +252,19 @@ public class Budget extends AppCompatActivity {
 
                                     if(sharedPrefs.loadDarkModeTheme()) {
                                         cardView.setCardBackgroundColor(Color.parseColor("#212121"));
-                                        tvcategory.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvdescription.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvbudget.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvactivity.setTextColor(Color.parseColor("#A4DEBE"));
-                                        tvavailable.setTextColor(Color.parseColor("#A4DEBE"));
+                                        tvcategory.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvdescription.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvbudget.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvactivity.setTextColor(Color.parseColor("#F9F3F3"));
+                                        tvavailable.setTextColor(Color.parseColor("#F9F3F3"));
                                     }
                                     else {
                                         cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
-                                        tvcategory.setTextColor(Color.parseColor("#4C6663"));
-                                        tvdescription.setTextColor(Color.parseColor("#4C6663"));
-                                        tvbudget.setTextColor(Color.parseColor("#4C6663"));
-                                        tvactivity.setTextColor(Color.parseColor("#4C6663"));
-                                        tvavailable.setTextColor(Color.parseColor("#4C6663"));
+                                        tvcategory.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvdescription.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvbudget.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvactivity.setTextColor(Color.parseColor("#5E5B5B"));
+                                        tvavailable.setTextColor(Color.parseColor("#5E5B5B"));
                                     }
                                 }
                                 else {
