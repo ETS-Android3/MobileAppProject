@@ -16,7 +16,7 @@
         android:fontFamily="@font/quicksand"
         android:gravity="center_vertical"
         android:paddingLeft="25dp"
-        android:text="TIPS ON SAVING"
+        android:text="Tips on Saving"
         android:textColor="#F9F3F3"
         android:textSize="20sp"
         android:textStyle="bold" />

@@ -29,6 +29,10 @@
         <item name="loginImgBG">@drawable/loginbg3</item>
         <item name="textboxColor">@drawable/bg_textbox</item>
         <item name="warningTextColor">#E30000</item>
+        <item name="transparentBG">#00000000</item>
+        <item name="resetPassBG">#FFFFFF</item>
+        <item name="resetGradient">@drawable/bg_resetpass</item>
+
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
@@ -58,6 +62,9 @@
         <item name="loginImgBG">@drawable/logindm3</item>
         <item name="textboxColor">@drawable/bg_textbox_dark</item>
         <item name="warningTextColor">#E30000</item>
+        <item name="transparentBG">#00000000</item>
+        <item name="resetPassBG">#383636</item>
+        <item name="resetGradient">@drawable/bg_resetpass2</item>
     </style>
 
     <style name="SettingsLight" parent="AppThemeLight">

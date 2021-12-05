@@ -16,7 +16,7 @@
         android:fontFamily="@font/quicksand"
         android:gravity="center_vertical"
         android:paddingLeft="25dp"
-        android:text="TIPS ON SAVING"
+        android:text="Tips on Saving"
         android:textColor="#F9F3F3"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -37,7 +37,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="40dp"
-            app:cardBackgroundColor="?attr/transparent"
+            app:cardBackgroundColor="?attr/transparentBG"
             app:cardElevation="0dp"
             app:cardCornerRadius="10dp">
 

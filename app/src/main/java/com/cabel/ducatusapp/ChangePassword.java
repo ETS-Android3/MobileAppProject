@@ -94,7 +94,7 @@ public class ChangePassword extends AppCompatActivity {
                 }
             }
         });
-        showPass2.setOnClickListener(new View.OnClickListener() {
+        showPass3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!passVisibility3) {
