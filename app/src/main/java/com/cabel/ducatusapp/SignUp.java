@@ -32,8 +32,7 @@ public class SignUp extends AppCompatActivity {
     private static final String ALGORITHM = "AES";
     private static final String KEY = "1Hbfh667adfDEJ78";
     private SharedPrefs sharedPrefs;
-    private Integer userID = 0;
-    private Boolean validKey = false;
+    private int userID = 0;
     private Boolean passVisibility = false;
 
     @Override
@@ -77,9 +76,11 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String username = etvUsername.getText().toString();
-                String email = etvEmail.getText().toString();
-                String password = etvPassword.getText().toString();
+                String username = etvUsername.getText().toString().trim();
+                String email = etvEmail.getText().toString().trim();
+                String password = etvPassword.getText().toString().trim();
+
+                //Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT).show();
 
                 //Check if fields are empty
                 if (TextUtils.isEmpty(username)) {
@@ -157,53 +158,131 @@ public class SignUp extends AppCompatActivity {
                 queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot child : snapshot.getChildren()) {
-                            if(snapshot.exists()) {
-                                if (child.child("username").getValue(String.class).equals(username)) { //check if username already exists
-                                    if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                        tvWarning.setText("Username is already in use");
-                                        tvWarning.setVisibility(View.VISIBLE);
-                                        //Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                                else {
-                                    if (child.child("email").getValue(String.class).equals(email)) { //check if email already exists
-                                        if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                            tvWarning.setText("Email is already in use");
-                                            tvWarning.setVisibility(View.VISIBLE);
-                                            //Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                    else { //valid credentials -> insert to database
-                                        validKey = true; //set credentials as valid
-                                        try {
-                                            String cipherText = encrypt(password);
-                                            User user = new User(userID, username, email, cipherText, "user");
-                                            databaseReference.child(userID.toString()).setValue(user);
-                                            Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
-                                            SharedPrefs.setLoginStatus(SignUp.this, true);
-                                            SharedPrefs.setUsertype(SignUp.this, "user");
-                                            SharedPrefs.setCurrentUser(SignUp.this, username);
-                                            SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
-                                            Handler handler = new Handler();
-                                            handler.postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    startActivity(new Intent(getApplicationContext(), Home.class));
-                                                    finish();
-                                                }
-                                            }, 2000);
+                        String[] dbUsers;
+                        String[] dbEmail;
+                        int userValidKey = 0;
+                        int emailValidKey = 0;
+                        int i = 0;
 
+                        for (DataSnapshot child: snapshot.getChildren()) {
+                            if (snapshot.exists()) {
+                                dbUsers = new String[(int) snapshot.getChildrenCount()];
+                                dbUsers[i] = child.child("username").getValue().toString().toLowerCase(); //assign each username to array
+
+                                dbEmail = new String[(int) snapshot.getChildrenCount()];
+                                dbEmail[i] = child.child("email").getValue().toString().toLowerCase(); //assign each email to array
+
+                                if(dbUsers[i].equals(username.toLowerCase())) {
+                                    userValidKey++;
+                                }
+                                if(dbEmail[i].equals(email.toLowerCase())) {
+                                    emailValidKey++;
+                                }
+                            }
+                            i++;
+                        }
+
+                        if(userValidKey == 0) {
+                            if(emailValidKey == 0) {
+                                try {
+                                    tvWarning.setVisibility(View.INVISIBLE);
+                                    tvWarning.setVisibility(View.INVISIBLE);
+                                    String cipherText = encrypt(password);
+                                    User user = new User(userID, username, email, cipherText, "user");
+                                    databaseReference.child(String.valueOf(userID)).setValue(user);
+                                    Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
+                                    SharedPrefs.setLoginStatus(SignUp.this, true);
+                                    SharedPrefs.setUsertype(SignUp.this, "user");
+                                    SharedPrefs.setCurrentUser(SignUp.this, username);
+                                    SharedPrefs.setCurrentUserId(SignUp.this, String.valueOf(userID));
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                            finish();
                                         }
-                                        catch(Exception e) {
-                                            System.out.println("Error: " + e);
-                                        }
-                                    }
+                                    }, 2000);
+                                }
+                                catch(Exception e) {
+                                    System.out.println("Error: " + e);
                                 }
                             }
                             else {
-                                break;
+                                tvWarning.setText("Email is already in use");
+                                tvWarning.setVisibility(View.VISIBLE);
                             }
+                        }
+                        else {
+                            tvWarning.setText("Username is already in use");
+                            tvWarning.setVisibility(View.VISIBLE);
+                        }
+
+                        for (DataSnapshot child: snapshot.getChildren()) {
+                            /*int i = 0;
+                            if(snapshot.exists()) {
+                                dbUsers = new String[(int)snapshot.getChildrenCount()];
+                                dbUsers[i] = child.child("username").getValue().toString().toLowerCase();
+                            }
+                            i++;
+
+
+                            /*try {
+                                Thread.sleep(4000);
+                                if(snapshot.exists()) {
+                                    if (child.child("username").getValue(String.class).toLowerCase().equals(username.toLowerCase())) { //check if username already exists
+                                        //String dbuser = child.child("username").getValue().toString().toLowerCase();
+                                        //Toast.makeText(getApplicationContext(), dbuser, Toast.LENGTH_SHORT).show();
+                                        if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
+                                            tvWarning.setText("Username is already in use");
+                                            tvWarning.setVisibility(View.VISIBLE);
+                                            Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
+                                            break;
+                                        }
+                                    }
+                                    else {
+                                        if (child.child("email").getValue(String.class).toLowerCase().equals(email.toLowerCase())) { //check if email already exists
+                                            if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
+                                                tvWarning.setText("Email is already in use");
+                                                tvWarning.setVisibility(View.VISIBLE);
+                                                Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
+                                                break;
+                                            }
+                                        }
+                                        else { //valid credentials -> insert to database
+                                            validKey = true; //set credentials as valid
+                                            Toast.makeText(getApplicationContext(), "Valid", Toast.LENGTH_SHORT).show();
+                                            try {
+                                                String cipherText = encrypt(password);
+                                                User user = new User(userID, username, email, cipherText, "user");
+                                                databaseReference.child(userID.toString()).setValue(user);
+                                                Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
+                                                SharedPrefs.setLoginStatus(SignUp.this, true);
+                                                SharedPrefs.setUsertype(SignUp.this, "user");
+                                                SharedPrefs.setCurrentUser(SignUp.this, username);
+                                                SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
+                                                Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        startActivity(new Intent(getApplicationContext(), Home.class));
+                                                        finish();
+                                                    }
+                                                }, 2000);
+                                            }
+                                            catch(Exception e) {
+                                                System.out.println("Error: " + e);
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    break;
+                                }
+                            }
+                            catch(Exception e) {
+                                System.out.println("Error: " + e);
+                            }*/
                         }
                     }
                     @Override

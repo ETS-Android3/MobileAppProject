@@ -214,11 +214,13 @@ public class Expenses extends AppCompatActivity {
                                     }
                                 }
                                 else {
+                                    totalAmount = 0;
                                     tvTotalAmount.setText(String.format("₱%.2f", 0.00));
                                     layoutItems.removeAllViews();
                                 }
                             }
                             else {
+                                totalAmount = 0;
                                 tvTotalAmount.setText(String.format("₱%.2f", 0.00));
                                 layoutItems.removeAllViews();
                             }
