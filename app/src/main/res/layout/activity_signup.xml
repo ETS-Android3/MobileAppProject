@@ -59,7 +59,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="80dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -79,16 +79,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:visibility="invisible"
                     android:fontFamily="@font/roboto"
                     android:text="TextView"
+                    android:textColor="?attr/warningTextColor"
                     android:textSize="16sp"
-                    android:textColor="?attr/warningTextColor" />
+                    android:visibility="invisible" />
 
                 <EditText
                     android:id="@+id/etvUserReg"
-                    android:layout_width="277dp"
-                    android:layout_height="48dp"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_textbox_login"
@@ -103,8 +103,8 @@
 
                 <EditText
                     android:id="@+id/etvEmailReg"
-                    android:layout_width="277dp"
-                    android:layout_height="48dp"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_textbox_login"
@@ -118,8 +118,8 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
-                    android:layout_width="277dp"
-                    android:layout_height="48dp"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_textbox_login"
@@ -127,8 +127,8 @@
 
                     <EditText
                         android:id="@+id/etvPassReg"
-                        android:layout_width="220dp"
-                        android:layout_height="48dp"
+                        android:layout_width="235dp"
+                        android:layout_height="45dp"
                         android:background="@drawable/bg_textbox_login"
                         android:drawableStart="@drawable/ic_outline_lock_24"
                         android:drawablePadding="20dp"
@@ -153,19 +153,20 @@
 
                 <Button
                     android:id="@+id/btnRegister"
-                    android:layout_width="277dp"
-                    android:layout_height="48dp"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="60dp"
                     android:background="@drawable/bg_button_login"
                     android:text="@string/sign_up"
+                    android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp">
+                    android:layout_marginTop="50dp">
 
                     <TextView
                         android:id="@+id/textView49"

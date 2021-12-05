@@ -64,7 +64,6 @@ public class UserProfile extends AppCompatActivity {
         storageReference = storage.getReference();
 
         imgProfilePic = findViewById(R.id.imgProfilePic);
-        TextView txtUpdatePic = findViewById(R.id.txtUpdatePic);
         EditText etvUsernameProfile = findViewById(R.id.etvUsernameProfile);
         EditText etvEmailProfile = findViewById(R.id.etvEmailProfile);
 
@@ -89,12 +88,6 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        txtUpdatePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choosePicture();
-            }
-        });
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users/" + uid);
         Query query = databaseReference.orderByKey();
@@ -121,75 +114,4 @@ public class UserProfile extends AppCompatActivity {
         });
     }
 
-    private void choosePicture() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-            imageUri = data.getData();
-            imgProfilePic.setImageURI(imageUri);
-            uploadPicture();
-        }
-    }
-
-    private void uploadPicture() {
-
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Uploading Image");
-        pd.show();
-
-        final String randomKey = UUID.randomUUID().toString();
-        StorageReference riversRef = storageReference.child("images/" + randomKey);
-
-        riversRef.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        SharedPrefs.setCurrentUserImage(UserProfile.this, randomKey);
-                        DatabaseReference imageReference = FirebaseDatabase.getInstance().getReference().child("images");
-                        Query queryAll = imageReference.orderByKey();
-                        queryAll.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.child(uid).exists()) {
-                                    imageReference.child(uid + "/imageurl").setValue(randomKey);
-                                }
-                                else {
-                                    ImageClass image = new ImageClass(randomKey, uid);
-                                    imageReference.child(uid).setValue(image);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                        pd.dismiss();
-                        Snackbar.make(findViewById(android.R.id.content),"Image Uploaded",Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(),"Failed to Upload", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                        double progressPercent = (100.00 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                        pd.setMessage("Progress: " + (int) progressPercent + "%");
-                    }
-                });
-
-
-    }
 }
