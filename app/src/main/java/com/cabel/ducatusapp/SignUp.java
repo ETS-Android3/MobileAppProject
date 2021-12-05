@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
@@ -39,7 +40,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
         if(sharedPrefs.loadDarkModeTheme()) {
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.SettingsDark);
         }
         else {
             setTheme(R.style.SettingsLight);
@@ -184,7 +185,15 @@ public class SignUp extends AppCompatActivity {
                                             SharedPrefs.setUsertype(SignUp.this, "user");
                                             SharedPrefs.setCurrentUser(SignUp.this, username);
                                             SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
-                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    startActivity(new Intent(getApplicationContext(), Home.class));
+                                                    finish();
+                                                }
+                                            }, 2000);
+
                                         }
                                         catch(Exception e) {
                                             System.out.println("Error: " + e);

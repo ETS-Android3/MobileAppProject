@@ -145,30 +145,6 @@
             android:layout_marginTop="30dp">
 
             <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="46dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_groups_24" />
-
-            <TextView
-                android:id="@+id/tvDevelopers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/roboto"
-                android:text="Developers"
-                android:textColor="?attr/primaryTextColor"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp">
-
-            <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="46dp"
                 android:layout_height="40dp"

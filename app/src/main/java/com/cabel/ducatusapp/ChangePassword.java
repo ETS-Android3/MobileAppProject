@@ -41,7 +41,7 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
         if(sharedPrefs.loadDarkModeTheme()) {
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.SettingsDark);
         }
         else {
             setTheme(R.style.SettingsLight);
@@ -175,6 +175,7 @@ public class ChangePassword extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Successfully changed password", Toast.LENGTH_SHORT).show();
                             databaseReference.child("/password").setValue(cipherText);
                             startActivity(new Intent(ChangePassword.this, Settings.class));
+                            finish();
                         }
                         else {
                             if(key.equals(false)) { //check if key is valid to avoid late data retrieval

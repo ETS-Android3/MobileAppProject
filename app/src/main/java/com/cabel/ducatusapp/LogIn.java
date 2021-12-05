@@ -40,7 +40,7 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
         if(sharedPrefs.loadDarkModeTheme()) {
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.SettingsDark);
 
         }
         else {
@@ -95,7 +95,7 @@ public class LogIn extends AppCompatActivity {
                     return;
                 }
 
-                //Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Loading data...", Toast.LENGTH_LONG).show();
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
                 Query query = databaseReference.orderByKey();
@@ -104,7 +104,7 @@ public class LogIn extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child: snapshot.getChildren()) {
                             try {
-                                Thread.sleep(0);
+                                Thread.sleep(4000);
                                 if (child.child("username").getValue(String.class).equals(username)) {
                                     userKey = true; //set user as valid
                                     SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
@@ -122,12 +122,14 @@ public class LogIn extends AppCompatActivity {
                                             SharedPrefs.setUsertype(LogIn.this, "admin");
                                             SharedPrefs.setCurrentUser(LogIn.this, username);
                                             startActivity(new Intent(getApplicationContext(), Home.class));
+                                            finish();
                                         }
                                         else {
                                             SharedPrefs.setLoginStatus(LogIn.this, true);
                                             SharedPrefs.setUsertype(LogIn.this, "user");
                                             SharedPrefs.setCurrentUser(LogIn.this, username);
                                             startActivity(new Intent(getApplicationContext(), Home.class));
+                                            finish();
                                         }
                                     }
                                     else {

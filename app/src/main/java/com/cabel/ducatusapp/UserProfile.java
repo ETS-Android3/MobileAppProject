@@ -47,7 +47,7 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPrefs = new SharedPrefs(this);
         if(sharedPrefs.loadDarkModeTheme()) {
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.SettingsDark);
         }
         else {
             setTheme(R.style.SettingsLight);
