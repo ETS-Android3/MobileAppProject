@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -182,7 +183,14 @@ public class BudgetItem extends AppCompatActivity {
                                         ExpensesClass expensesClass = new ExpensesClass(itemID, category, description, activity, date, userID, itemID);
                                         expensesReference.child(String.valueOf(itemID)).setValue(expensesClass);
 
-                                        startActivity(new Intent(getApplicationContext(), Budget.class));
+                                        Toast.makeText(getApplicationContext(), "Added item", Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                startActivity(new Intent(getApplicationContext(), Budget.class));
+                                            }
+                                        }, 1000);
                                     }
 
                                     @Override
@@ -200,7 +208,6 @@ public class BudgetItem extends AppCompatActivity {
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
             }
         });
 

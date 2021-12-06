@@ -105,9 +105,9 @@ public class LogIn extends AppCompatActivity {
                         for (DataSnapshot child: snapshot.getChildren()) {
                             if (snapshot.exists()) {
                                 dbUsers = new String[(int) snapshot.getChildrenCount()];
-                                dbUsers[i] = child.child("username").getValue().toString().toLowerCase(); //assign each username to array
+                                dbUsers[i] = child.child("username").getValue().toString(); //assign each username to array
 
-                                if(dbUsers[i].equals(username.toLowerCase())) {
+                                if(dbUsers[i].equals(username)) {
                                     dbUser = dbUsers[i];
                                     dbUsertype = child.child("usertype").getValue().toString();
                                     uid = child.child("userID").getValue().toString();
@@ -121,7 +121,6 @@ public class LogIn extends AppCompatActivity {
                             }
                             i++;
                         }
-
                         if(!(dbUser.equals(""))) {
                             if(cipherPass.equals(password)) {
                                 if(dbUsertype.equals("admin")) {
@@ -150,59 +149,6 @@ public class LogIn extends AppCompatActivity {
                             tvWarning.setText("User does not exist");
                             tvWarning.setVisibility(View.VISIBLE);
                         }
-
-                        /*for (DataSnapshot child: snapshot.getChildren()) {
-
-                            /*try {
-                                Thread.sleep(4000);
-                                if (child.child("username").getValue(String.class).equals(username)) {
-                                    userKey = true; //set user as valid
-                                    SharedPrefs.setCurrentUserId(LogIn.this, child.getKey());
-                                    try {
-                                        cipherPass = decrypt(child.child("password").getValue(String.class));
-                                    }
-                                    catch(Exception e) {
-                                        System.out.println("Error: " + e);
-                                    }
-
-                                    if (cipherPass.equals(password)) {
-                                        passwordKey = true; //set password as valid
-                                        if (child.child("usertype").getValue(String.class).equals("admin")) {
-                                            SharedPrefs.setLoginStatus(LogIn.this, true);
-                                            SharedPrefs.setUsertype(LogIn.this, "admin");
-                                            SharedPrefs.setCurrentUser(LogIn.this, username);
-                                            startActivity(new Intent(getApplicationContext(), Home.class));
-                                            finish();
-                                        }
-                                        else {
-                                            SharedPrefs.setLoginStatus(LogIn.this, true);
-                                            SharedPrefs.setUsertype(LogIn.this, "user");
-                                            SharedPrefs.setCurrentUser(LogIn.this, username);
-                                            startActivity(new Intent(getApplicationContext(), Home.class));
-                                            finish();
-                                        }
-                                    }
-                                    else {
-                                        if (passwordKey.equals(false)) { //check validity of password to avoid late data retrieval
-                                            tvWarning.setText("Incorrect password");
-                                            tvWarning.setVisibility(View.VISIBLE);
-                                            //Toast.makeText(getApplicationContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                                else {
-                                    if (userKey.equals(false)) { //check validity of user to avoid late data retrieval
-                                        tvWarning.setText("User does not exist");
-                                        tvWarning.setVisibility(View.VISIBLE);
-                                        //Toast.makeText(getApplicationContext(), "User does not exist", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                            catch(Exception e) {
-                                System.out.println("Error: " + e);
-                            }
-
-                        }*/
                     }
 
                     @Override
@@ -230,8 +176,7 @@ public class LogIn extends AppCompatActivity {
         });
     }
 
-    public static String encrypt(String value) throws Exception
-    {
+    public static String encrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(LogIn.ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -241,8 +186,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    public static String decrypt(String value) throws Exception
-    {
+    public static String decrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(LogIn.ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key);
@@ -253,8 +197,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    private static Key generateKey() throws Exception
-    {
+    private static Key generateKey() throws Exception {
         Key key = new SecretKeySpec(LogIn.KEY.getBytes(),LogIn.ALGORITHM);
         return key;
     }

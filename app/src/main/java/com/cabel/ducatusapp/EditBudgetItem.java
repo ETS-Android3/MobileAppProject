@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -190,7 +191,14 @@ public class EditBudgetItem extends AppCompatActivity {
                                         System.out.println("Error: " + error);
                                     }
                                 });
-                                startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                Toast.makeText(getApplicationContext(), "Item details saved", Toast.LENGTH_SHORT).show();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                    }
+                                }, 1000);
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -248,7 +256,14 @@ public class EditBudgetItem extends AppCompatActivity {
                                     }
                                 });
 
-                                startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                Toast.makeText(getApplicationContext(), "Deleted item", Toast.LENGTH_SHORT).show();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                    }
+                                }, 1000);
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

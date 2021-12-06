@@ -235,10 +235,10 @@
                 android:layout_height="38dp"
                 android:background="@drawable/border_change_password"
                 android:fontFamily="@font/roboto"
-                android:text="SAVE"
+                android:text="Save"
+                android:textAllCaps="false"
                 android:textColor="#F9F3F3"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"/>
 
             <Button
                 android:id="@+id/btnDelete"
@@ -248,10 +248,10 @@
                 android:layout_toEndOf="@+id/btnSave"
                 android:background="@drawable/border_logout"
                 android:fontFamily="@font/roboto"
-                android:text="DELETE"
+                android:text="Delete"
+                android:textAllCaps="false"
                 android:textColor="#F9F3F3"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"/>
         </RelativeLayout>
     </LinearLayout>
 
