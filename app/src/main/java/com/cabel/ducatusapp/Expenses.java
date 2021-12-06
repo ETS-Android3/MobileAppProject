@@ -102,16 +102,6 @@ public class Expenses extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //Add icon intent
-        Button btnAdd = findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Expenses.this, ExpensesItem.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public float convertDpToPixel(float dp){
