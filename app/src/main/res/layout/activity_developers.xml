@@ -190,6 +190,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://www.figma.com/file/wD7xABAYj2vAVUJGgshGsT/Budgeting-and-Financing-Application?node-id=0%3A1"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -214,7 +215,8 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
-                    android:text="https://androiddvlpr.com/android-dp-to-px/ "
+                    android:justificationMode="inter_word"
+                    android:text="Android Dvlpr.com. (n.d.). Android dp to px and px to dp simple Java functions. Retrieved from https://androiddvlpr.com/android-dp-to-px/ "
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -238,7 +240,8 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
-                    android:text="https://www.youtube.com/watch?v=Es8AZjsu94M"
+                    android:justificationMode="inter_word"
+                    android:text="Budyfriend Code. (2020). Login Session Database-realtime Firebase Android Studio. Retrieved from https://youtu.be/Es8AZjsu94M"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -262,7 +265,8 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
-                    android:text="https://www.youtube.com/watch?v=U95yWPKe5UY"
+                    android:justificationMode="inter_word"
+                    android:text="Budyfriend Code. (2020). How to make a Dialog Date Picker, Month Year Picker and Year Picker in Android Studio. Retrieved from https://youtu.be/U95yWPKe5UY"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -286,7 +290,8 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
-                    android:text="https://stackoverflow.com/questions/41223937/how-can-i-encrypte-my-password-android-studio"
+                    android:justificationMode="inter_word"
+                    android:text="Mahatha, R. (2016). How can I encrypt my password - Android Studio. Retrieved from https://stackoverflow.com/questions/41223937/how-can-i-encrypte-my-password-android-studio"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -310,6 +315,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://www.creditboss.in/government-schemes/aspire-scheme/"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -334,6 +340,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://www.istockphoto.com/vector/electricity-saving-ecology-awareness-or-reduce-electric-cost-and-expense-concept-gm1272389586-374671477?irgwc=1/cid=IS/utm_medium=affiliate/utm_source=Eezy%2C%20LLC/clickid=TTP2431BQxyIU14VwDRnVVYUUkGzXFSZa1cRRE0/utm_term=sv.brusheezy.com/utm_campaign=SRP/utm_content=1141993/irpid=38919"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -346,6 +353,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="The Girl is Reading Novel on the Vouch"
                     android:textColor="#000000"
                     android:textSize="14sp"
@@ -358,6 +366,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://dribbble.com/shots/11474553-The-girl-is-reading-novel-on-the-couch "
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -382,6 +391,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://www.istockphoto.com/de/vektor/isometrischer-shop-beleg-papier-zahlungsrechnung-gm1175010299-327017284"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -394,6 +404,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="Smiley Woman Cooking in the Kitchen Premium Vector"
                     android:textColor="#000000"
                     android:textSize="14sp"
@@ -406,6 +417,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
                     android:text="https://www.freepik.com/premium-vector/smiley-woman-cooking-kitchen_8007912.htm#page=1query=woman%20cookingposition=14from_view=keyword"
                     android:textColor="#000000"
                     android:textSize="12sp" />
