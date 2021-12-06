@@ -100,25 +100,25 @@ public class SignUp extends AppCompatActivity {
 
                 //username and password must not be same
                 if(username.equals(password)) {
-                    Toast.makeText(getApplicationContext(), "Username and password must not be the same", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Username and password must not be the same", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //check email validity
                 if(!email.contains("@")) {
-                    Toast.makeText(getApplicationContext(), "Email is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email is invalid", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //email and password must not be same
                 if(email.equals(password)) {
-                    Toast.makeText(getApplicationContext(), "Email and password must not be the same", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email and password must not be the same", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //check password validity
                 if(password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters long", Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -190,11 +190,11 @@ public class SignUp extends AppCompatActivity {
                                     String cipherText = encrypt(password);
                                     User user = new User(userID, username, email, cipherText, "user");
                                     databaseReference.child(String.valueOf(userID)).setValue(user);
-                                    Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
                                     SharedPrefs.setLoginStatus(SignUp.this, true);
                                     SharedPrefs.setUsertype(SignUp.this, "user");
                                     SharedPrefs.setCurrentUser(SignUp.this, username);
                                     SharedPrefs.setCurrentUserId(SignUp.this, String.valueOf(userID));
+                                    Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
@@ -217,73 +217,6 @@ public class SignUp extends AppCompatActivity {
                             tvWarning.setText("Username is already in use");
                             tvWarning.setVisibility(View.VISIBLE);
                         }
-
-                        for (DataSnapshot child: snapshot.getChildren()) {
-                            /*int i = 0;
-                            if(snapshot.exists()) {
-                                dbUsers = new String[(int)snapshot.getChildrenCount()];
-                                dbUsers[i] = child.child("username").getValue().toString().toLowerCase();
-                            }
-                            i++;
-
-
-                            /*try {
-                                Thread.sleep(4000);
-                                if(snapshot.exists()) {
-                                    if (child.child("username").getValue(String.class).toLowerCase().equals(username.toLowerCase())) { //check if username already exists
-                                        //String dbuser = child.child("username").getValue().toString().toLowerCase();
-                                        //Toast.makeText(getApplicationContext(), dbuser, Toast.LENGTH_SHORT).show();
-                                        if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                            tvWarning.setText("Username is already in use");
-                                            tvWarning.setVisibility(View.VISIBLE);
-                                            Toast.makeText(getApplicationContext(), "Username is already in use", Toast.LENGTH_SHORT).show();
-                                            break;
-                                        }
-                                    }
-                                    else {
-                                        if (child.child("email").getValue(String.class).toLowerCase().equals(email.toLowerCase())) { //check if email already exists
-                                            if (validKey.equals(false)) { //check validity of key to avoid late data retrieval
-                                                tvWarning.setText("Email is already in use");
-                                                tvWarning.setVisibility(View.VISIBLE);
-                                                Toast.makeText(getApplicationContext(), "Email is already in use", Toast.LENGTH_SHORT).show();
-                                                break;
-                                            }
-                                        }
-                                        else { //valid credentials -> insert to database
-                                            validKey = true; //set credentials as valid
-                                            Toast.makeText(getApplicationContext(), "Valid", Toast.LENGTH_SHORT).show();
-                                            try {
-                                                String cipherText = encrypt(password);
-                                                User user = new User(userID, username, email, cipherText, "user");
-                                                databaseReference.child(userID.toString()).setValue(user);
-                                                Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
-                                                SharedPrefs.setLoginStatus(SignUp.this, true);
-                                                SharedPrefs.setUsertype(SignUp.this, "user");
-                                                SharedPrefs.setCurrentUser(SignUp.this, username);
-                                                SharedPrefs.setCurrentUserId(SignUp.this, userID.toString());
-                                                Handler handler = new Handler();
-                                                handler.postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        startActivity(new Intent(getApplicationContext(), Home.class));
-                                                        finish();
-                                                    }
-                                                }, 2000);
-                                            }
-                                            catch(Exception e) {
-                                                System.out.println("Error: " + e);
-                                            }
-                                        }
-                                    }
-                                }
-                                else {
-                                    break;
-                                }
-                            }
-                            catch(Exception e) {
-                                System.out.println("Error: " + e);
-                            }*/
-                        }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -302,8 +235,7 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    public static String encrypt(String value) throws Exception
-    {
+    public static String encrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(SignUp.ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -313,8 +245,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    public static String decrypt(String value) throws Exception
-    {
+    public static String decrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(SignUp.ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key);
@@ -325,8 +256,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private static Key generateKey() throws Exception
-    {
+    private static Key generateKey() throws Exception {
         Key key = new SecretKeySpec(SignUp.KEY.getBytes(),SignUp.ALGORITHM);
         return key;
     }

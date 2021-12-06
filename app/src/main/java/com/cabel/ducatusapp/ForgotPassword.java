@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +35,6 @@ public class ForgotPassword extends AppCompatActivity {
     private Boolean emailKey = false;
     private Boolean passVisibility1 = false;
     private Boolean passVisibility2 = false;
-    private String cipherPass = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class ForgotPassword extends AppCompatActivity {
         Button btnCancel = findViewById(R.id.btnCancel);
         ImageButton showPass1 = findViewById(R.id.imgPassVisibility1);
         ImageButton showPass2 = findViewById(R.id.imgPassVisibility2);
+        TextView tvWarning = findViewById(R.id.tvWarning);
 
         showPass1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +64,12 @@ public class ForgotPassword extends AppCompatActivity {
                 if(!passVisibility1) {
                     passVisibility1 = true;
                     etvNewPassword.setTransformationMethod(new PasswordTransformationMethod());
-                    showPass1.setImageResource(R.drawable.ic_visibility_off);
+                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_off_24);
                 }
                 else {
                     passVisibility1 = false;
                     etvNewPassword.setTransformationMethod(null);
-                    showPass1.setImageResource(R.drawable.ic_visibility);
+                    showPass1.setImageResource(R.drawable.ic_baseline_visibility_24);
                 }
             }
         });
@@ -78,12 +80,12 @@ public class ForgotPassword extends AppCompatActivity {
                 if(!passVisibility2) {
                     passVisibility2 = true;
                     etvConfirmPassword.setTransformationMethod(new PasswordTransformationMethod());
-                    showPass2.setImageResource(R.drawable.ic_visibility_off);
+                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_off_24);
                 }
                 else {
                     passVisibility2 = false;
                     etvConfirmPassword.setTransformationMethod(null);
-                    showPass2.setImageResource(R.drawable.ic_visibility);
+                    showPass2.setImageResource(R.drawable.ic_baseline_visibility_24);
                 }
             }
         });
@@ -113,25 +115,25 @@ public class ForgotPassword extends AppCompatActivity {
 
                 //check email validity
                 if(!email.contains("@")) {
-                    Toast.makeText(getApplicationContext(), "Email is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email is invalid", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //email and password must not be same
                 if(email.equals(newPassword)) {
-                    Toast.makeText(getApplicationContext(), "Email and password must not be the same", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email and password must not be the same", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //check if password fields match
                 if(!newPassword.equals(confirmPassword)) {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 //check password validity
                 if(newPassword.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters long", Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -140,31 +142,38 @@ public class ForgotPassword extends AppCompatActivity {
                 queryAll.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        try {
-                            Thread.sleep(0);
-                            for(DataSnapshot uniqueKey: snapshot.getChildren()) {
-                                if(uniqueKey.child("email").getValue(String.class).equals(email)) { //retrieve inputted email
-                                    String userKey = uniqueKey.getKey(); //retrieve the key that contains the email
-                                    emailKey = true; //set email as valid
-                                    try {
-                                        cipherPass = encrypt(newPassword);
-                                    }
-                                    catch(Exception e) {
-                                        System.out.println("Error: " + e);
-                                    }
-                                    databaseReference.child(userKey + "/password").setValue(cipherPass);
-                                    Toast.makeText(getApplicationContext(), "Successfully changed password", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ForgotPassword.this, LogIn.class));
+                        String userKey = "";
+                        String cipherPass = "";
+                        for (DataSnapshot uniqueKey : snapshot.getChildren()) {
+                            if (uniqueKey.child("email").getValue(String.class).equals(email)) { //retrieve inputted email
+                                userKey = uniqueKey.getKey(); //retrieve the key that contains the email
+                                emailKey = true; //set email as valid
+                                try {
+                                    cipherPass = encrypt(newPassword);
                                 }
-                                else {
-                                    if(emailKey.equals(false)) { //check validity of email to avoid late data retrieval
-                                        Toast.makeText(getApplicationContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
-                                    }
+                                catch (Exception e) {
+                                    System.out.println("Error: " + e);
                                 }
                             }
                         }
-                        catch(InterruptedException e) {
-                            e.printStackTrace();
+                        if (emailKey.equals(true)) {
+                            tvWarning.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "Successfully changed password", Toast.LENGTH_SHORT).show();
+                            emailKey = false;
+                            databaseReference.child(userKey + "/password").setValue(cipherPass);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(new Intent(ForgotPassword.this, LogIn.class));
+                                    finish();
+                                }
+                            }, 2000);
+                        }
+                        else {
+                            tvWarning.setText("Email does not exist");
+                            tvWarning.setVisibility(View.VISIBLE);
+                            //Toast.makeText(getApplicationContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -186,19 +195,16 @@ public class ForgotPassword extends AppCompatActivity {
         });
     }
 
-    public static String encrypt(String value) throws Exception
-    {
+    public static String encrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(ForgotPassword.ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte [] encryptedByteValue = cipher.doFinal(value.getBytes("utf-8"));
         String encryptedValue64 = Base64.encodeToString(encryptedByteValue, Base64.DEFAULT);
         return encryptedValue64;
-
     }
 
-    public static String decrypt(String value) throws Exception
-    {
+    public static String decrypt(String value) throws Exception {
         Key key = generateKey();
         Cipher cipher = Cipher.getInstance(ForgotPassword.ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key);
@@ -206,11 +212,9 @@ public class ForgotPassword extends AppCompatActivity {
         byte [] decryptedByteValue = cipher.doFinal(decryptedValue64);
         String decryptedValue = new String(decryptedByteValue,"utf-8");
         return decryptedValue;
-
     }
 
-    private static Key generateKey() throws Exception
-    {
+    private static Key generateKey() throws Exception {
         Key key = new SecretKeySpec(ForgotPassword.KEY.getBytes(),ForgotPassword.ALGORITHM);
         return key;
     }
