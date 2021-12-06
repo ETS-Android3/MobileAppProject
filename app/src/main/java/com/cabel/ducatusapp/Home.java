@@ -52,9 +52,6 @@ public class Home extends AppCompatActivity {
                         if(child.child("userID").getValue().toString().equals(uid)) { // get items created by current user and count
                             items++;
                         }
-                        else {
-                            break;
-                        }
                     }
                     else {
                         break;
@@ -85,9 +82,6 @@ public class Home extends AppCompatActivity {
                     if(snapshot.exists()) {
                         if(child.child("userID").getValue().toString().equals(uid)) { // get items created by current user and count
                             items++;
-                        }
-                        else {
-                            break;
                         }
                     }
                     else {
