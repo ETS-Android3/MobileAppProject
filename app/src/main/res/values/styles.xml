@@ -28,7 +28,7 @@
         <item name="loginBG">#28666E</item>
         <item name="loginImgBG">@drawable/loginbg3</item>
         <item name="textboxColor">@drawable/bg_white_textbox</item>
-        <item name="warningTextColor">#FF5353</item>
+        <item name="warningTextColor">#C23B22</item>
         <item name="transparentBG">#00000000</item>
         <item name="resetPassBG">#F9F3F3</item>
         <item name="resetGradient">@drawable/bg_resetpass</item>
