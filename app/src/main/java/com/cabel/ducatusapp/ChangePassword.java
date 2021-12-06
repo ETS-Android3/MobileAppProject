@@ -229,7 +229,12 @@ public class ChangePassword extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ChangePassword.this, Settings.class));
+                if(SharedPrefs.getUsertype(ChangePassword.this).equals("user")) {
+                    startActivity(new Intent(ChangePassword.this, Settings.class));
+                }
+                else if(SharedPrefs.getUsertype(ChangePassword.this).equals("admin")) {
+                    startActivity(new Intent(ChangePassword.this, SettingsAdmin.class));
+                }
             }
         });
 

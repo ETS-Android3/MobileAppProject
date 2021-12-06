@@ -134,7 +134,12 @@ public class UserProfile extends AppCompatActivity {
         btnBackUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserProfile.this, Settings.class));
+                if(SharedPrefs.getUsertype(UserProfile.this).equals("user")) {
+                    startActivity(new Intent(UserProfile.this, Settings.class));
+                }
+                else if(SharedPrefs.getUsertype(UserProfile.this).equals("admin")) {
+                    startActivity(new Intent(UserProfile.this, SettingsAdmin.class));
+                }
             }
         });
     }
