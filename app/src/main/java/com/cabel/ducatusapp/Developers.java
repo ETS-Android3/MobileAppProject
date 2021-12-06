@@ -9,9 +9,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Developers extends AppCompatActivity {
-
+    private SharedPrefs sharedPrefs;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPrefs = new SharedPrefs(this);
+        if(sharedPrefs.loadDarkModeTheme()) {
+            setTheme(R.style.SettingsDark);
+        }
+        else {
+            setTheme(R.style.SettingsLight);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developers);
 
