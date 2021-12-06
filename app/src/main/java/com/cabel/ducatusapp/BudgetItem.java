@@ -108,6 +108,12 @@ public class BudgetItem extends AppCompatActivity {
                 String budget = etvBudget.getText().toString();
                 String activity = etvActivity.getText().toString();
 
+                if(TextUtils.isEmpty(activity)) {
+                    activityKey = false;
+                    etvAvailable.setText(null);
+                    tvWarning.setText("");
+                    tvWarning.setVisibility(View.INVISIBLE);
+                }
                 if(TextUtils.isEmpty(budget)) {
                     activityKey = false;
                     tvWarning.setText("Enter your budget first");
@@ -119,25 +125,28 @@ public class BudgetItem extends AppCompatActivity {
                         tvWarning.setText("Input must be a number");
                         tvWarning.setVisibility(View.VISIBLE);
                     }
-                    else if(!TextUtils.isEmpty(activity)) {
-                        if(Float.parseFloat(activity) > Float.parseFloat(budget)) {
-                            etvAvailable.setText(null);
-                            tvWarning.setText("Budget must be higher than To Spend amount");
-                            tvWarning.setVisibility(View.VISIBLE);
+                    else {
+                        if(!TextUtils.isEmpty(activity)) {
+                            if(Float.parseFloat(activity) > Float.parseFloat(budget)) {
+                                activityKey = false;
+                                etvAvailable.setText(null);
+                                tvWarning.setText("Budget must be higher than To Spend amount");
+                                tvWarning.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                activityKey = true;
+                                available = Float.parseFloat(budget) - Float.parseFloat(activity);
+                                etvAvailable.setText(String.valueOf(available));
+                                tvWarning.setText("");
+                                tvWarning.setVisibility(View.INVISIBLE);
+                            }
                         }
                         else {
-                            activityKey = true;
-                            available = Float.parseFloat(budget) - Float.parseFloat(activity);
-                            etvAvailable.setText(String.valueOf(available));
+                            activityKey = false;
+                            etvAvailable.setText(null);
                             tvWarning.setText("");
                             tvWarning.setVisibility(View.INVISIBLE);
                         }
-                    }
-                    else {
-                        activityKey = false;
-                        etvAvailable.setText(null);
-                        tvWarning.setText("");
-                        tvWarning.setVisibility(View.INVISIBLE);
                     }
                 }
             }
