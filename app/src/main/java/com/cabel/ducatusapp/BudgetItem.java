@@ -108,19 +108,19 @@ public class BudgetItem extends AppCompatActivity {
                 String budget = etvBudget.getText().toString();
                 String activity = etvActivity.getText().toString();
 
-                if(TextUtils.isEmpty(activity)) {
-                    activityKey = false;
-                    etvAvailable.setText(null);
-                    tvWarning.setText("");
-                    tvWarning.setVisibility(View.INVISIBLE);
-                }
                 if(TextUtils.isEmpty(budget)) {
                     activityKey = false;
                     tvWarning.setText("Enter your budget first");
                     tvWarning.setVisibility(View.VISIBLE);
                 }
                 else {
-                    if(!Pattern.matches("^[0-9].*", activity)) {
+                    if(TextUtils.isEmpty(activity)) {
+                        activityKey = false;
+                        etvAvailable.setText(null);
+                        tvWarning.setText("");
+                        tvWarning.setVisibility(View.INVISIBLE);
+                    }
+                    else if(!Pattern.matches("^[0-9].*", activity)) {
                         activityKey = false;
                         tvWarning.setText("Input must be a number");
                         tvWarning.setVisibility(View.VISIBLE);
