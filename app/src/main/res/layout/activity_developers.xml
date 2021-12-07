@@ -99,6 +99,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="Elmer Kyle De Leon"
                         android:textAlignment="center"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -110,6 +111,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="Shaina Yu"
                         android:textAlignment="center"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -141,6 +143,7 @@
                     android:fontFamily="@font/roboto"
                     android:text="Kean Aylward Cabel"
                     android:textAlignment="center"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -316,7 +319,7 @@
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
                     android:justificationMode="inter_word"
-                    android:text="https://www.creditboss.in/government-schemes/aspire-scheme/"
+                    android:text="Boss, C. (2021, March 26). ASPIRE Scheme. Retrieved from CreditBoss: https://www.creditboss.in/government-schemes/aspire-scheme/"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -341,7 +344,7 @@
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
                     android:justificationMode="inter_word"
-                    android:text="https://www.istockphoto.com/vector/electricity-saving-ecology-awareness-or-reduce-electric-cost-and-expense-concept-gm1272389586-374671477?irgwc=1/cid=IS/utm_medium=affiliate/utm_source=Eezy%2C%20LLC/clickid=TTP2431BQxyIU14VwDRnVVYUUkGzXFSZa1cRRE0/utm_term=sv.brusheezy.com/utm_campaign=SRP/utm_content=1141993/irpid=38919"
+                    android:text="Somsuk, N. (2020, September 14). Electricity saving. Retrieved from iStock: https://www.istockphoto.com/vector/electricity-saving-ecology-awareness-or-reduce-electric-cost-and-expense-concept-gm1272389586-374671477?irgwc=1cid=ISutm_medium=affiliateutm_source=Eezy%2C%20LLCclickid=TTP2431BQxyIU14VwDRnVVYUUkGzXFSZa1cRRE0utm_ter"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -367,7 +370,7 @@
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
                     android:justificationMode="inter_word"
-                    android:text="https://dribbble.com/shots/11474553-The-girl-is-reading-novel-on-the-couch "
+                    android:text="HoangPts. (n.d.). The girl is reading novel on the couch. Retrieved from Dribbble: https://dribbble.com/shots/11474553-The-girl-is-reading-novel-on-the-couch"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -392,7 +395,7 @@
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
                     android:justificationMode="inter_word"
-                    android:text="https://www.istockphoto.com/de/vektor/isometrischer-shop-beleg-papier-zahlungsrechnung-gm1175010299-327017284"
+                    android:text="klyaksun. (2019, September 17). Isometrischer Shop-Beleg. Retrieved from iStock: https://www.istockphoto.com/de/vektor/isometrischer-shop-beleg-papier-zahlungsrechnung-gm1175010299-327017284"
                     android:textColor="#000000"
                     android:textSize="12sp" />
 
@@ -418,7 +421,7 @@
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/roboto"
                     android:justificationMode="inter_word"
-                    android:text="https://www.freepik.com/premium-vector/smiley-woman-cooking-kitchen_8007912.htm#page=1query=woman%20cookingposition=14from_view=keyword"
+                    android:text="Smiley woman cooking in the kitchen Premium Vector. (n.d.). Retrieved from freepik: https://www.freepik.com/premium-vector/smiley-woman-cooking-kitchen_8007912.htm#page=1query=woman%20cookingposition=14from_view=keyword"
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
