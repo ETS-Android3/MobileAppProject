@@ -424,6 +424,136 @@
                     android:text="Smiley woman cooking in the kitchen Premium Vector. (n.d.). Retrieved from freepik: https://www.freepik.com/premium-vector/smiley-woman-cooking-kitchen_8007912.htm#page=1query=woman%20cookingposition=14from_view=keyword"
                     android:textColor="#000000"
                     android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView58"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Tips Vector"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView60"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Kszczanowicz, L. (2021, March 4). Internet of Things. Retrieved from DSStream: https://dsstream.com/what-is-internet-of-things/"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView61"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Budget Vector"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView62"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="twinrizki08. (n.d.). Illustration Budget Balance Pro Vector. Retrieved from Vecteezy: https://www.vecteezy.com/vector-art/1861340-illustration-budget-balance"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView63"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Woman Shopping and Budgeting"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Vector — Budget, monthly expenses planning checklist, calculator and economy vector icon illustration. Woman shopping and budgeting. (n.d.). Retrieved from 123RF: https://www.123rf.com/photo_162111082_budget-monthly-expenses-planning-checklist-calculator-and-economy-vector-icon-illustration-woman-sho.html?vti=lqi451oi1dvi28kr7x-1-15"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView65"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Money Vector"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView66"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text=" Free vector: Money logos collection for companies. Freepik. (2018, July 19). Retrieved from https://www.freepik.com/free-vector/money-logos-collection-companies_2620510.htm."
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView67"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Money Vector"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView68"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:justificationMode="inter_word"
+                    android:text="Free vector: Money logos collection for companies. Freepik. (2018, July 17). Retrieved from https://www.freepik.com/free-vector/money-logos-collection-companies_2607188.htm#page=1&amp;position=8&amp;from_view=detail#&amp;position=8&amp;from_view=detail."
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
