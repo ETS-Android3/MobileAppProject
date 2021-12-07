@@ -171,8 +171,8 @@ public class Expenses extends AppCompatActivity {
                                     rl.addView(tvdescription);
 
                                     TextView tvamount = new TextView(Expenses.this);
-                                    RelativeLayout.LayoutParams amountParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    amountParam.setMargins((int) convertDpToPixel(146), (int) convertDpToPixel(5), 0, 0);
+                                    RelativeLayout.LayoutParams amountParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(80), ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    amountParam.setMargins((int) convertDpToPixel(136), (int) convertDpToPixel(5), 0, 0);
                                     tvamount.setLayoutParams(amountParam);
                                     tvamount.setText(String.format("₱%.2f", amount));
                                     tvamount.setTextColor(Color.parseColor("#5E5B5B"));

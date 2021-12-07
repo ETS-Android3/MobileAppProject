@@ -175,7 +175,7 @@ public class Budget extends AppCompatActivity {
                                     CardView cardView = new CardView(Budget.this);
                                     CardView.LayoutParams cardParam = new CardView.LayoutParams(
                                             925,
-                                            (int)(convertDpToPixel(50))//144//64 * 2.25
+                                            (int)(convertDpToPixel(50))
                                     );
                                     cardParam.setMargins(0, (int) convertDpToPixel(10), 0, 0);
                                     cardView.setLayoutParams(cardParam);
@@ -217,37 +217,37 @@ public class Budget extends AppCompatActivity {
 
                                     TextView tvcategory = new TextView(Budget.this);
                                     RelativeLayout.LayoutParams categoryParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    categoryParam.setMargins((int) convertDpToPixel(10), (int) convertDpToPixel(5), 0, 0);
+                                    categoryParam.setMargins((int) convertDpToPixel(5), (int) convertDpToPixel(5), 0, 0);
                                     tvcategory.setLayoutParams(categoryParam);
                                     tvcategory.setText(category);
                                     rl.addView(tvcategory);
 
                                     TextView tvdescription = new TextView(Budget.this);
                                     RelativeLayout.LayoutParams descriptionParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    descriptionParam.setMargins((int) convertDpToPixel(10), (int) convertDpToPixel(25), 0, 0);
+                                    descriptionParam.setMargins((int) convertDpToPixel(5), (int) convertDpToPixel(25), 0, 0);
                                     tvdescription.setLayoutParams(descriptionParam);
                                     tvdescription.setText(description);
                                     rl.addView(tvdescription);
 
                                     TextView tvbudget = new TextView(Budget.this);
-                                    RelativeLayout.LayoutParams budgetParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    budgetParam.setMargins((int) convertDpToPixel(105), (int) convertDpToPixel(5), 0, 0);
+                                    RelativeLayout.LayoutParams budgetParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(80), ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    budgetParam.setMargins((int) convertDpToPixel(89), (int) convertDpToPixel(5), 0, 0);
                                     tvbudget.setLayoutParams(budgetParam);
                                     tvbudget.setText(String.format("₱%.2f", budget));
                                     tvbudget.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                                     rl.addView(tvbudget);
 
                                     TextView tvactivity = new TextView(Budget.this);
-                                    RelativeLayout.LayoutParams activityParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    activityParam.setMargins((int) convertDpToPixel(184), (int) convertDpToPixel(5), 0, 0);
+                                    RelativeLayout.LayoutParams activityParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(80), ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    activityParam.setMargins((int) convertDpToPixel(178), (int) convertDpToPixel(5), 0, 0);
                                     tvactivity.setLayoutParams(activityParam);
                                     tvactivity.setText(String.format("₱%.2f", activity));
                                     tvactivity.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                                     rl.addView(tvactivity);
 
                                     TextView tvavailable = new TextView(Budget.this);
-                                    RelativeLayout.LayoutParams availableParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(70), ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    availableParam.setMargins((int) convertDpToPixel(276), (int) convertDpToPixel(5), 0, 0);
+                                    RelativeLayout.LayoutParams availableParam = new RelativeLayout.LayoutParams((int) convertDpToPixel(80), ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    availableParam.setMargins((int) convertDpToPixel(271), (int) convertDpToPixel(5), 0, 0);
                                     tvavailable.setLayoutParams(availableParam);
                                     tvavailable.setText(String.format("₱%.2f", available));
                                     tvavailable.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);

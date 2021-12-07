@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class EditBudgetItem extends AppCompatActivity {
     private SharedPrefs sharedPrefs;
     private String itemID = "";
@@ -33,6 +35,7 @@ public class EditBudgetItem extends AppCompatActivity {
     private float budget = 0;
     private float activity = 0;
     private float available = 0;
+    private Boolean activityKey = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,19 +89,34 @@ public class EditBudgetItem extends AppCompatActivity {
                 String budget = etvBudget.getText().toString();
                 String activity = etvActivity.getText().toString();
 
-                if(!TextUtils.isEmpty(activity)) {
-                    if(Float.parseFloat(activity) > Float.parseFloat(budget)) {
-                        etvAvailable.setText(null);
-                        tvWarning.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        available = Float.parseFloat(budget) - Float.parseFloat(activity);
-                        etvAvailable.setText(String.valueOf(available));
-                        tvWarning.setVisibility(View.INVISIBLE);
-                    }
+                if(TextUtils.isEmpty(activity)) {
+                    activityKey = false;
+                    etvAvailable.setText(null);
+                    tvWarning.setText("");
+                    tvWarning.setVisibility(View.INVISIBLE);
+                }
+                else if (!Pattern.matches("^[0-9].*", activity)) {
+                    activityKey = false;
+                    tvWarning.setText("Input must be a number");
+                    tvWarning.setVisibility(View.VISIBLE);
                 }
                 else {
-                    etvAvailable.setText(null);
+                    if (!TextUtils.isEmpty(activity)) {
+                        if (Float.parseFloat(activity) > Float.parseFloat(budget)) {
+                            activityKey = false;
+                            etvAvailable.setText(null);
+                            tvWarning.setText("Budget must be higher than To Spend amount");
+                            tvWarning.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            activityKey = true;
+                            available = Float.parseFloat(budget) - Float.parseFloat(activity);
+                            etvAvailable.setText(String.valueOf(available));
+                            tvWarning.setText("");
+                            tvWarning.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
                 }
             }
         });
@@ -107,11 +125,9 @@ public class EditBudgetItem extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String strActivity = etvActivity.getText().toString();
                 category = etvCategory.getText().toString();
                 description = etvDescription.getText().toString();
-                activity = Float.parseFloat(etvActivity.getText().toString());
-
-                available = budget - activity;
 
                 //Check if fields are empty
                 if (TextUtils.isEmpty(category)) {
@@ -124,91 +140,92 @@ public class EditBudgetItem extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(String.valueOf(budget))) {
-                    Toast.makeText(getApplicationContext(), "Enter budget", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(String.valueOf(activity))) {
+                if (TextUtils.isEmpty(strActivity)) {
                     Toast.makeText(getApplicationContext(), "Enter activity", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                //check email validity
-                if(activity > budget) {
-                    Toast.makeText(getApplicationContext(), "Activity must be lower than the allocated budget", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                if(activityKey.equals(true)) {
+                    activity = Float.parseFloat(etvActivity.getText().toString());
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(EditBudgetItem.this);
-                builder.setCancelable(true);
-                builder.setTitle("Edit Item");
-                builder.setMessage("Save details?");
-                builder.setPositiveButton("Confirm",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget/" + itemID);
-                                Query queryItem = databaseReference.orderByKey();
-                                queryItem.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        float dbActivity = Float.parseFloat(snapshot.child("activity").getValue().toString());
-                                        float dbAvailable = Float.parseFloat(snapshot.child("available").getValue().toString());
+                    //check email validity
+                    if(activity > budget) {
+                        Toast.makeText(getApplicationContext(), "Activity must be lower than the allocated budget", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                                        activity += dbActivity;
-                                        available -= dbAvailable;
+                    available = budget - activity;
 
-                                        databaseReference.child("/category").setValue(category);
-                                        databaseReference.child("/description").setValue(description);
-                                        databaseReference.child("/activity").setValue(activity);
-                                        databaseReference.child("/available").setValue(available);
-                                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EditBudgetItem.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("Edit Item");
+                    builder.setMessage("Save details?");
+                    builder.setPositiveButton("Confirm",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("budget/" + itemID);
+                                    Query queryItem = databaseReference.orderByKey();
+                                    queryItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            float dbActivity = Float.parseFloat(snapshot.child("activity").getValue().toString());
+                                            float dbAvailable = Float.parseFloat(snapshot.child("available").getValue().toString());
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-                                        System.out.println("Error: " + error);
-                                    }
+                                            activity += dbActivity;
+                                            available -= dbAvailable;
 
-                                });
-                                DatabaseReference expensesReference = FirebaseDatabase.getInstance().getReference().child("expenses");
-                                Query expensesItem = expensesReference.orderByKey();
-                                expensesItem.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        for(DataSnapshot child: snapshot.getChildren()) {
-                                            if(child.child("itemID").getValue().toString().equals(itemID)) {
-                                                String expenseID = child.child("expenseID").getValue().toString();
-                                                expensesReference.child(expenseID + "/category").setValue(category);
-                                                expensesReference.child(expenseID + "/description").setValue(description);
-                                                expensesReference.child(expenseID + "/amount").setValue(activity);
+                                            databaseReference.child("/category").setValue(category);
+                                            databaseReference.child("/description").setValue(description);
+                                            databaseReference.child("/activity").setValue(activity);
+                                            databaseReference.child("/available").setValue(available);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            System.out.println("Error: " + error);
+                                        }
+
+                                    });
+                                    DatabaseReference expensesReference = FirebaseDatabase.getInstance().getReference().child("expenses");
+                                    Query expensesItem = expensesReference.orderByKey();
+                                    expensesItem.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            for(DataSnapshot child: snapshot.getChildren()) {
+                                                if(child.child("itemID").getValue().toString().equals(itemID)) {
+                                                    String expenseID = child.child("expenseID").getValue().toString();
+                                                    expensesReference.child(expenseID + "/category").setValue(category);
+                                                    expensesReference.child(expenseID + "/description").setValue(description);
+                                                    expensesReference.child(expenseID + "/amount").setValue(activity);
+                                                }
                                             }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-                                        System.out.println("Error: " + error);
-                                    }
-                                });
-                                Toast.makeText(getApplicationContext(), "Item details saved", Toast.LENGTH_SHORT).show();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        startActivity(new Intent(EditBudgetItem.this, Budget.class));
-                                    }
-                                }, 1000);
-                            }
-                        });
-                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            System.out.println("Error: " + error);
+                                        }
+                                    });
+                                    Toast.makeText(getApplicationContext(), "Item details saved", Toast.LENGTH_SHORT).show();
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(EditBudgetItem.this, Budget.class));
+                                        }
+                                    }, 1000);
+                                }
+                            });
+                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
             }
         });
 
@@ -245,7 +262,7 @@ public class EditBudgetItem extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         for(DataSnapshot child: snapshot.getChildren()) {
                                             if(child.child("itemID").getValue().toString().equals(itemID)) {
-                                                snapshot.getRef().removeValue();
+                                                snapshot.getRef().child(itemID).removeValue();
                                             }
                                         }
                                     }

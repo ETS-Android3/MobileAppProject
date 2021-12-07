@@ -67,7 +67,7 @@
             android:textSize="20sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
@@ -77,6 +77,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
                 android:fontFamily="@font/roboto"
                 android:text="Category"
                 android:textColor="?attr/titleSecondaryColor"
@@ -84,14 +85,15 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp">
+                android:layout_marginStart="18dp">
 
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/roboto"
                     android:text="Budgeted"
                     android:textAlignment="textEnd"
@@ -101,10 +103,9 @@
 
                 <TextView
                     android:id="@+id/tvTotalBudget"
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView28"
-                    android:layout_marginStart="26dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/roboto"
@@ -115,14 +116,15 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="9dp">
 
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
                     android:fontFamily="@font/roboto"
                     android:text="Activity"
                     android:textAlignment="textEnd"
@@ -132,10 +134,10 @@
 
                 <TextView
                     android:id="@+id/tvTotalActivity"
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView30"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/roboto"
@@ -146,14 +148,15 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="14dp">
 
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/roboto"
                     android:text="Available"
                     android:textAlignment="textEnd"
@@ -163,10 +166,9 @@
 
                 <TextView
                     android:id="@+id/tvTotalAvailable"
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView32"
-                    android:layout_marginStart="22dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/roboto"
@@ -180,7 +182,7 @@
 
         <View
             android:id="@+id/divider"
-            android:layout_width="350dp"
+            android:layout_width="360dp"
             android:layout_height="1dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
