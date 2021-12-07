@@ -262,7 +262,7 @@ public class EditBudgetItem extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         for(DataSnapshot child: snapshot.getChildren()) {
                                             if(child.child("itemID").getValue().toString().equals(itemID)) {
-                                                snapshot.getRef().removeValue();
+                                                snapshot.getRef().child(itemID).removeValue();
                                             }
                                         }
                                     }
